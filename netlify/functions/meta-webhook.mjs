@@ -21,7 +21,10 @@ export async function handler(event) {
   if (event.httpMethod !== 'POST') return text(405, 'Method not allowed');
 
   const body = JSON.parse(event.body || '{}');
-  await processMetaWebhook(body);
+  const result = await processMetaWebhook(body);
+  if (event.queryStringParameters?.debug === '1') {
+    return json(200, result);
+  }
   return text(200, 'OK');
 }
 
@@ -31,6 +34,12 @@ async function processMetaWebhook(body) {
     ...extractInstagramEvents(body),
     ...extractFacebookEvents(body)
   ];
+
+  const result = {
+    events: events.length,
+    processed: 0,
+    errors: []
+  };
 
   for (const event of events) {
     try {
@@ -49,7 +58,14 @@ async function processMetaWebhook(body) {
       if (event.channel === 'facebook') {
         await sendFacebookText(event.from, reply);
       }
+
+      result.processed += 1;
     } catch (error) {
+      result.errors.push({
+        message: error.message,
+        channel: event.channel,
+        from: event.from
+      });
       console.error('Failed to process Meta event', {
         error: error.message,
         channel: event.channel,
@@ -57,6 +73,8 @@ async function processMetaWebhook(body) {
       });
     }
   }
+
+  return result;
 }
 
 function text(statusCode, body) {
@@ -64,5 +82,13 @@ function text(statusCode, body) {
     statusCode,
     headers: { 'Content-Type': 'text/plain' },
     body
+  };
+}
+
+function json(statusCode, body) {
+  return {
+    statusCode,
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    body: JSON.stringify(body)
   };
 }
