@@ -5,7 +5,7 @@ loadDotEnv();
 
 export const config = {
   port: Number(process.env.PORT || 3000),
-  metaVerifyToken: process.env.META_VERIFY_TOKEN,
+  metaVerifyToken: process.env.META_VERIFY_TOKEN || 'mi_token_secreto_autoselect',
   graphVersion: process.env.META_GRAPH_VERSION || 'v21.0',
   whatsapp: {
     accessToken: process.env.WHATSAPP_ACCESS_TOKEN,
