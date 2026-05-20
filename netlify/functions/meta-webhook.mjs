@@ -21,7 +21,7 @@ export async function handler(event) {
   if (event.httpMethod !== 'POST') return text(405, 'Method not allowed');
 
   const body = JSON.parse(event.body || '{}');
-  processMetaWebhook(body);
+  await processMetaWebhook(body);
   return text(200, 'OK');
 }
 
