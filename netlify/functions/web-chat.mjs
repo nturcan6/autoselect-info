@@ -46,7 +46,7 @@ function json(statusCode, body) {
     statusCode,
     headers: {
       ...corsHeaders(),
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json; charset=utf-8'
     },
     body: JSON.stringify(body)
   };
