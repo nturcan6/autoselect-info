@@ -1,0 +1,22 @@
+﻿[build]
+  publish = "."
+  functions = "netlify/functions"
+  command = ""
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/health"
+  to = "/.netlify/functions/health"
+  status = 200
+
+[[redirects]]
+  from = "/web-chat"
+  to = "/.netlify/functions/web-chat"
+  status = 200
+
+[[redirects]]
+  from = "/webhook/meta"
+  to = "/.netlify/functions/meta-webhook"
+  status = 200

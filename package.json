@@ -1,0 +1,17 @@
+{
+  "name": "autoselect-client-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MVP bot for WhatsApp, Instagram and Google Sheets lead capture.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "smoke": "node scripts/smoke-test.js",
+    "smoke:web": "node scripts/web-chat-smoke-test.js",
+    "smoke:netlify-web": "node scripts/netlify-web-chat-smoke-test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
