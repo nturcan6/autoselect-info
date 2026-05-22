@@ -1,5 +1,7 @@
 import { config } from '../config.js';
-import { sendWhatsAppText } from './meta.js';
+import { sendWhatsAppTemplate, sendWhatsAppText } from './meta.js';
+
+const OWNER_TEMPLATE_NAME = 'nuevo_lead_autoselect';
 
 export async function notifyOwner({ event, lead, reply }) {
   const ownerNumber = normalizePhone(config.whatsapp.ownerNumber);
@@ -10,10 +12,26 @@ export async function notifyOwner({ event, lead, reply }) {
     return { skipped: true, reason: 'Customer is owner number' };
   }
 
-  const payload = await sendWhatsAppText(ownerNumber, buildOwnerSummary({ event, lead, reply }));
+  let payload;
+  try {
+    payload = await sendWhatsAppTemplate(ownerNumber, {
+      name: OWNER_TEMPLATE_NAME,
+      language: 'es',
+      parameters: [
+        labelChannel(event.channel),
+        lead.contactId || event.from || 'No indicado',
+        event.text || 'Sin texto'
+      ]
+    });
+  } catch (error) {
+    console.error('Owner template notification failed, trying text message', error);
+    payload = await sendWhatsAppText(ownerNumber, buildOwnerSummary({ event, lead, reply }));
+  }
+
   return {
     skipped: false,
     to: ownerNumber,
+    template: OWNER_TEMPLATE_NAME,
     messageId: payload?.messages?.[0]?.id || null
   };
 }

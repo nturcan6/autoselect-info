@@ -101,6 +101,45 @@ export async function sendWhatsAppText(to, body) {
   return response.json();
 }
 
+export async function sendWhatsAppTemplate(to, { name, language = 'es', parameters = [] }) {
+  if (!config.whatsapp.accessToken || !config.whatsapp.phoneNumberId) {
+    console.log('[dry-run whatsapp template]', { to, name, language, parameters });
+    return;
+  }
+
+  const response = await fetch(
+    `${graphBase}/${config.whatsapp.phoneNumberId}/messages`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${config.whatsapp.accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        messaging_product: 'whatsapp',
+        to,
+        type: 'template',
+        template: {
+          name,
+          language: { code: language },
+          components: [
+            {
+              type: 'body',
+              parameters: parameters.map((text) => ({
+                type: 'text',
+                text: String(text || '').slice(0, 900)
+              }))
+            }
+          ]
+        }
+      })
+    }
+  );
+
+  await assertMetaOk(response, 'WhatsApp template send failed');
+  return response.json();
+}
+
 export async function sendInstagramText(recipientId, text) {
   if (!config.instagram.accessToken || !config.instagram.pageId) {
     console.log('[dry-run instagram]', { recipientId, text });
