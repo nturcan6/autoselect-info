@@ -1,6 +1,7 @@
 import { buildBotReply } from '../../src/services/bot.js';
 import { appendLead } from '../../src/services/googleSheets.js';
 import { classifyLead } from '../../src/services/leads.js';
+import { notifyOwner } from '../../src/services/ownerNotifications.js';
 import {
   extractFacebookEvents,
   extractInstagramEvents,
@@ -58,6 +59,8 @@ async function processMetaWebhook(body) {
       if (event.channel === 'facebook') {
         await sendFacebookText(event.from, reply);
       }
+
+      await notifyOwner({ event, lead, reply });
 
       result.processed += 1;
     } catch (error) {

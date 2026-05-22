@@ -1,6 +1,7 @@
 import { buildBotReply } from '../../src/services/bot.js';
 import { appendLead } from '../../src/services/googleSheets.js';
 import { classifyLead } from '../../src/services/leads.js';
+import { notifyOwner } from '../../src/services/ownerNotifications.js';
 
 export async function handler(event) {
   if (event.httpMethod === 'OPTIONS') return empty(204);
@@ -25,6 +26,7 @@ export async function handler(event) {
 
     await appendLead(lead);
     const reply = await buildBotReply({ event: botEvent, lead });
+    await notifyOwner({ event: botEvent, lead, reply });
 
     return json(200, { lead, reply });
   } catch (error) {

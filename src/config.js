@@ -9,7 +9,8 @@ export const config = {
   graphVersion: process.env.META_GRAPH_VERSION || 'v21.0',
   whatsapp: {
     accessToken: process.env.WHATSAPP_ACCESS_TOKEN,
-    phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID
+    phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID,
+    ownerNumber: process.env.OWNER_WHATSAPP_NUMBER
   },
   instagram: {
     accessToken: process.env.INSTAGRAM_ACCESS_TOKEN,
