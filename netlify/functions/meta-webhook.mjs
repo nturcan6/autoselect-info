@@ -61,7 +61,7 @@ async function processMetaWebhook(body) {
         await sendFacebookText(event.from, reply);
       }
 
-      result.ownerNotifications.push(await notifyOwner({ event, lead, reply }));
+      result.ownerNotifications.push(await safeNotifyOwner({ event, lead, reply }));
 
       result.processed += 1;
     } catch (error) {
@@ -79,6 +79,19 @@ async function processMetaWebhook(body) {
   }
 
   return result;
+}
+
+async function safeNotifyOwner(payload) {
+  try {
+    return await notifyOwner(payload);
+  } catch (error) {
+    console.error('owner notification failed', error);
+    return {
+      skipped: true,
+      reason: 'Owner notification failed',
+      error: error.message
+    };
+  }
 }
 
 function text(statusCode, body) {

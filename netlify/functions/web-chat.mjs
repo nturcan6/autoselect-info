@@ -26,7 +26,7 @@ export async function handler(event) {
 
     await appendLead(lead);
     const reply = await buildBotReply({ event: botEvent, lead });
-    const ownerNotification = await notifyOwner({ event: botEvent, lead, reply });
+    const ownerNotification = await safeNotifyOwner({ event: botEvent, lead, reply });
 
     return json(200, {
       lead,
@@ -36,6 +36,19 @@ export async function handler(event) {
   } catch (error) {
     console.error('web-chat failed', error);
     return json(500, { error: 'Internal server error' });
+  }
+}
+
+async function safeNotifyOwner(payload) {
+  try {
+    return await notifyOwner(payload);
+  } catch (error) {
+    console.error('owner notification failed', error);
+    return {
+      skipped: true,
+      reason: 'Owner notification failed',
+      error: error.message
+    };
   }
 }
 
