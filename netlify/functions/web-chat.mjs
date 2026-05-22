@@ -26,9 +26,13 @@ export async function handler(event) {
 
     await appendLead(lead);
     const reply = await buildBotReply({ event: botEvent, lead });
-    await notifyOwner({ event: botEvent, lead, reply });
+    const ownerNotification = await notifyOwner({ event: botEvent, lead, reply });
 
-    return json(200, { lead, reply });
+    return json(200, {
+      lead,
+      reply,
+      ...(event.queryStringParameters?.debug === '1' ? { ownerNotification } : {})
+    });
   } catch (error) {
     console.error('web-chat failed', error);
     return json(500, { error: 'Internal server error' });

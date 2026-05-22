@@ -39,6 +39,7 @@ async function processMetaWebhook(body) {
   const result = {
     events: events.length,
     processed: 0,
+    ownerNotifications: [],
     errors: []
   };
 
@@ -60,7 +61,7 @@ async function processMetaWebhook(body) {
         await sendFacebookText(event.from, reply);
       }
 
-      await notifyOwner({ event, lead, reply });
+      result.ownerNotifications.push(await notifyOwner({ event, lead, reply }));
 
       result.processed += 1;
     } catch (error) {

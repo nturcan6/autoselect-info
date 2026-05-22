@@ -98,6 +98,7 @@ export async function sendWhatsAppText(to, body) {
   );
 
   await assertMetaOk(response, 'WhatsApp send failed');
+  return response.json();
 }
 
 export async function sendInstagramText(recipientId, text) {

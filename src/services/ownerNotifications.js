@@ -3,12 +3,19 @@ import { sendWhatsAppText } from './meta.js';
 
 export async function notifyOwner({ event, lead, reply }) {
   const ownerNumber = normalizePhone(config.whatsapp.ownerNumber);
-  if (!ownerNumber) return;
+  if (!ownerNumber) return { skipped: true, reason: 'OWNER_WHATSAPP_NUMBER is not set' };
 
   const customerNumber = normalizePhone(event.from);
-  if (customerNumber && customerNumber === ownerNumber) return;
+  if (customerNumber && customerNumber === ownerNumber) {
+    return { skipped: true, reason: 'Customer is owner number' };
+  }
 
-  await sendWhatsAppText(ownerNumber, buildOwnerSummary({ event, lead, reply }));
+  const payload = await sendWhatsAppText(ownerNumber, buildOwnerSummary({ event, lead, reply }));
+  return {
+    skipped: false,
+    to: ownerNumber,
+    messageId: payload?.messages?.[0]?.id || null
+  };
 }
 
 function buildOwnerSummary({ event, lead, reply }) {
