@@ -6,6 +6,7 @@ export async function handler(event) {
       metaVerifyToken: isSet('META_VERIFY_TOKEN'),
       whatsappPhoneNumberId: isSet('WHATSAPP_PHONE_NUMBER_ID'),
       whatsappAccessToken: isSet('WHATSAPP_ACCESS_TOKEN'),
+      ownerWhatsappNumber: isSet('OWNER_WHATSAPP_NUMBER'),
       googleSheetId: isSet('GOOGLE_SHEET_ID'),
       googleSheetTab: isSet('GOOGLE_SHEET_TAB'),
       googleServiceAccountEmail: isSet('GOOGLE_SERVICE_ACCOUNT_EMAIL'),
