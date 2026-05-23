@@ -13,7 +13,7 @@ export const config = {
     ownerNumber: process.env.OWNER_WHATSAPP_NUMBER
   },
   instagram: {
-    accessToken: process.env.INSTAGRAM_ACCESS_TOKEN,
+    accessToken: process.env.FACEBOOK_PAGE_ACCESS_TOKEN || process.env.INSTAGRAM_ACCESS_TOKEN,
     pageId: process.env.INSTAGRAM_PAGE_ID
   },
   facebook: {
