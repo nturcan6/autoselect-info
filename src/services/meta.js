@@ -60,6 +60,8 @@ function extractMessagingEvents(payload, channel) {
       const text = messaging.message?.text?.trim();
       const senderId = messaging.sender?.id;
       if (!text || !senderId) continue;
+      if (channel === 'instagram' && senderId === config.instagram.pageId) continue;
+      if (channel === 'facebook' && senderId === config.facebook.pageId) continue;
 
         events.push({
           id: messaging.message.mid,
