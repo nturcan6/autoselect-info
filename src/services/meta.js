@@ -1,6 +1,7 @@
 import { config } from '../config.js';
 
 const graphBase = `https://graph.facebook.com/${config.graphVersion}`;
+const instagramGraphBase = `https://graph.instagram.com/${config.graphVersion}`;
 
 export function verifyWebhook(query) {
   const mode = query['hub.mode'];
@@ -146,7 +147,7 @@ export async function sendInstagramText(recipientId, text) {
     return;
   }
 
-  const response = await fetch(`${graphBase}/${config.instagram.pageId}/messages`, {
+  const response = await fetch(`${instagramGraphBase}/${config.instagram.pageId}/messages`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${config.instagram.accessToken}`,
