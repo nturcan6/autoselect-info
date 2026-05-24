@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -1405,6 +1405,7 @@ transform:translateY(-2px) scale(1.03);
         <a class="btn secondary" target="_blank" rel="noopener" href="https://wa.me/34651124757">WhatsApp</a>
         <button class="btn gold" id="toggleAdmin" type="button">Gestionar cat&aacute;logo</button>
         <a class="btn gold" href="gestionar-venta.html">Gestionar venta</a>
+        <a class="btn gold" href="carteles-venta.html">Carteles venta</a>
       </div>
     </div>
   </nav>
@@ -2222,7 +2223,7 @@ transform:translateY(-2px) scale(1.03);
         els.photoStatus.textContent = "Coche guardado correctamente.";
       } catch (error) {
         console.error(error);
-        alert("No se pudo guardar en Supabase. Revisa conexión, tabla cars, bucket car-images y políticas RLS.");
+        alert("No se pudo guardar en Supabase. Revisa conexiÃ³n, tabla cars, bucket car-images y polÃ­ticas RLS.");
       }
     });
 
@@ -2430,12 +2431,12 @@ transform:translateY(-2px) scale(1.03);
 <div class="warranty-modal" id="warrantyModal">
   <div class="warranty-box">
     <button class="warranty-close" id="closeWarrantyModal" type="button">&times;</button>
-    <h3>Garantía / Warranty</h3>
+    <h3>GarantÃ­a / Warranty</h3>
     <p>
-      Garantía de 1 año con una empresa especializada, que incluye el motor y la caja de cambios.
-      El cliente debe solicitar más especificaciones a la hora de realizar la compra del vehículo.
-      Hay varios tipos de garantía y coberturas que podemos ofrecer.
-      También se puede ampliar por cuenta propia.
+      GarantÃ­a de 1 aÃ±o con una empresa especializada, que incluye el motor y la caja de cambios.
+      El cliente debe solicitar mÃ¡s especificaciones a la hora de realizar la compra del vehÃ­culo.
+      Hay varios tipos de garantÃ­a y coberturas que podemos ofrecer.
+      TambiÃ©n se puede ampliar por cuenta propia.
     </p>
   </div>
 </div>
@@ -2469,10 +2470,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <h3>Blum Seguros</h3>
 
-    <p>Seguros personalizados para vehículos, hogar, salud y empresas.</p>
+    <p>Seguros personalizados para vehÃ­culos, hogar, salud y empresas.</p>
 
     <div class="insurance-links">
-      <a class="insurance-link" target="_blank" rel="noopener" href="https://BlumSeguros.com">Página web</a>
+      <a class="insurance-link" target="_blank" rel="noopener" href="https://BlumSeguros.com">PÃ¡gina web</a>
       <a class="insurance-link secondary" target="_blank" rel="noopener" href="https://www.facebook.com/elena.gherasimciuc">Facebook</a>
       <a class="insurance-link" target="_blank" rel="noopener" href="https://instagram.com/Elena.Gheras">Instagram @Elena.Gheras</a>
     </div>
@@ -2524,7 +2525,7 @@ document.addEventListener("click", function(event) {
     <div class="finance-inner">
       <div class="finance-topline">
         <div>
-          <label class="finance-label" for="financeYear">Año de primera matriculación <span style="color:#d3332d">*</span></label>
+          <label class="finance-label" for="financeYear">AÃ±o de primera matriculaciÃ³n <span style="color:#d3332d">*</span></label>
           <input class="finance-input" id="financeYear" type="number" value="2018" min="1980" max="2035">
         </div>
 
@@ -2532,16 +2533,16 @@ document.addEventListener("click", function(event) {
       </div>
 
       <div class="finance-row">
-        <label class="finance-label">Valor a financiar (€)</label>
+        <label class="finance-label">Valor a financiar (â‚¬)</label>
         <div class="finance-amount-row">
-          <button class="finance-step" type="button" id="financeMinus">−</button>
+          <button class="finance-step" type="button" id="financeMinus">âˆ’</button>
           <div class="finance-amount-display" id="financeAmountText">8000</div>
           <button class="finance-step" type="button" id="financePlus">+</button>
         </div>
       </div>
 
       <div class="finance-row">
-        <label class="finance-label">Número de meses</label>
+        <label class="finance-label">NÃºmero de meses</label>
         <div class="finance-month-scale" id="financeMonths">
           <div class="finance-month-option" data-months="36">36</div>
           <div class="finance-month-option" data-months="48">48</div>
@@ -2559,30 +2560,30 @@ document.addEventListener("click", function(event) {
       </div>
 
       <div class="finance-result">
-        <div class="finance-result-label">Tu cuota mensual de financiación:</div>
-        <div class="finance-payment" id="financePayment">267,13 €</div>
+        <div class="finance-result-label">Tu cuota mensual de financiaciÃ³n:</div>
+        <div class="finance-payment" id="financePayment">267,13 â‚¬</div>
       </div>
 
       <label class="finance-check">
         <input type="checkbox" id="financeServices">
-        <span>Cliente tiene interés en contratar servicios complementarios (por ejemplo, seguro de protección de Pagos).</span>
+        <span>Cliente tiene interÃ©s en contratar servicios complementarios (por ejemplo, seguro de protecciÃ³n de Pagos).</span>
       </label>
 
       <div class="finance-tin-title">Opciones de TIN</div>
       <div class="finance-tin-list">
-        <label><input type="radio" name="financeTin" value="9.99" checked>9.99 % (Comisión del colaborador de 0,50 %)</label>
-        <label><input type="radio" name="financeTin" value="8.99">8.99 % (Comisión del colaborador de 0,00 %)</label>
-        <label><input type="radio" name="financeTin" value="7.99">7.99 % (Comisión del colaborador de 0,00 %)</label>
-        <label><input type="radio" name="financeTin" value="6.99">6.99 % (Comisión del colaborador de 0,00 %)</label>
-        <label><input type="radio" name="financeTin" value="5.99">5.99 % (Comisión del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="9.99" checked>9.99 % (ComisiÃ³n del colaborador de 0,50 %)</label>
+        <label><input type="radio" name="financeTin" value="8.99">8.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="7.99">7.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="6.99">6.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="5.99">5.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
       </div>
 
       <div class="finance-legal">
-        Los cálculos ofrecidos tienen carácter orientativo y no vinculante, pudiendo sufrir alteraciones, ya que la operación está sujeta a evaluación y aprobación posterior.<br>
-        Tipo de Interés Nominal anual aplicable según opción seleccionada.<br>
-        Tasa Anual Equivalente (TAE) aplicable según condiciones finales.<br>
-        Comisión de apertura financiada estimada 3,50 %.<br>
-        Comisión de cancelación 1,00 %.
+        Los cÃ¡lculos ofrecidos tienen carÃ¡cter orientativo y no vinculante, pudiendo sufrir alteraciones, ya que la operaciÃ³n estÃ¡ sujeta a evaluaciÃ³n y aprobaciÃ³n posterior.<br>
+        Tipo de InterÃ©s Nominal anual aplicable segÃºn opciÃ³n seleccionada.<br>
+        Tasa Anual Equivalente (TAE) aplicable segÃºn condiciones finales.<br>
+        ComisiÃ³n de apertura financiada estimada 3,50 %.<br>
+        ComisiÃ³n de cancelaciÃ³n 1,00 %.
       </div>
     </div>
   </div>
@@ -2596,7 +2597,7 @@ document.addEventListener("click", function(event) {
   let financeMonths = 36;
 
   function formatEuro(value){
-    return value.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+    return value.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " â‚¬";
   }
 
   function getTin(){
@@ -2687,3 +2688,4 @@ document.addEventListener("click", function(event) {
 
 </body>
 </html>
+
