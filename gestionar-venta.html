@@ -59,7 +59,7 @@
             <div class="field"><label>Provincia</label><input data-company="province"></div>
             <div class="field"><label>Email</label><input data-company="email"></div>
             <div class="field"><label>Representante</label><input data-company="representative"></div>
-            <div class="field full"><label>IBAN / datos de pago</label><input data-company="iban"></div>
+            <div class="field full"><label>IBAN / BIC / datos de pago</label><input data-company="iban"></div>
           </div>
         </div>
 
@@ -146,12 +146,12 @@
     const SUPABASE_ANON_KEY = 'sb_publishable_prB3f-6vi4fxQmbE7N-XzQ_ApIW-xEI';
     const saleDb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     const DEFAULT_COMPANIES = {
-      blum:{label:'BLUM',name:'BLUM PROPERTIES, S.L.',taxId:'B16800963',address:'Calle Concordia 126, 2-1',zip:'08242',city:'Manresa',province:'Barcelona',phone:'+34 664 17 05 83',email:'nturcan6@gmail.com',iban:'',representative:'Nicolai'},
-      kinix:{label:'KINIX',name:'KINIX 2024, SOCIEDAD LIMITADA',taxId:'B70973011',address:'Avda Adelfas Las Campoamor 20, Bloque 4, Puerta 47',zip:'03189',city:'Orihuela',province:'Alicante',phone:'+34 656 18 88 78',email:'',iban:'',representative:'Nicolai'},
-      vangroup:{label:'VANGROUP',name:'VANGROUP 2023 S.L.',taxId:'B56657141',address:'Calle Unamuno 1, Local 3B, Orihuela Costa',zip:'03189',city:'Orihuela',province:'Alicante',phone:'+34 656 18 88 78',email:'',iban:'',representative:'Nicolai'},
-      ageg:{label:'AGEG',name:'AGEG-ESTRELLAS DEL MAR SL',taxId:'B19915016',address:'Calle Isla de Tabarca 69',zip:'03189',city:'Orihuela',province:'Alicante',phone:'+34 656 18 88 78',email:'',iban:'',representative:'Nicolai'}
+      blum:{label:'BLUM',name:'BLUM PROPERTIES, S.L.',taxId:'B16800963',address:'Calle Concordia 126, 2-1',zip:'08242',city:'Manresa',province:'Barcelona',phone:'+34 664 17 05 83',email:'nturcan6@gmail.com',iban:'IBAN: ES96 2100 0619 6502 0033 9554 - BIC: CAIXESBBXXX',representative:'Nicolai'},
+      kinix:{label:'KINIX',name:'KINIX 2024, SOCIEDAD LIMITADA',taxId:'B70973011',address:'Avda Adelfas Las Campoamor 20, Bloque 4, Puerta 47',zip:'03189',city:'Orihuela',province:'Alicante',phone:'+34 656 18 88 78',email:'',iban:'IBAN: ES30 2100 6807 8802 0020 4233 - BIC: CAIXESBBXXX',representative:'Nicolai'},
+      vangroup:{label:'VANGROUP',name:'VANGROUP 2023 S.L.',taxId:'B56657141',address:'Calle Unamuno 1, Local 3B, Orihuela Costa',zip:'03189',city:'Orihuela',province:'Alicante',phone:'+34 656 18 88 78',email:'',iban:'IBAN: ES81 0049 4284 1822 1403 0968 - BIC: BSCHESMMXXX',representative:'Nicolai'},
+      ageg:{label:'AGEG',name:'AGEG-ESTRELLAS DEL MAR SL',taxId:'B19915016',address:'Calle Isla de Tabarca 69',zip:'03189',city:'Orihuela',province:'Alicante',phone:'+34 656 18 88 78',email:'',iban:'IBAN: ES83 2100 1814 2502 0079 3576 - BIC: CAIXESBBXXX',representative:'Nicolai'}
     };
-    const COMPANY_KEY='autoselect_sales_companies_v3';
+    const COMPANY_KEY='autoselect_sales_companies_v4';
     const RECORD_KEY='autoselect_sales_records_v2';
     const fields=[...document.querySelectorAll('[data-field]')];
     const companyFields=[...document.querySelectorAll('[data-company]')];
@@ -199,3 +199,4 @@
   </script>
 </body>
 </html>
+
