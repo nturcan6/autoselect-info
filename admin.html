@@ -90,10 +90,10 @@
 
     .topbar .shell {
       min-height: 64px;
-      display: flex;
+      display: grid;
+      grid-template-columns: auto minmax(220px, 1fr) auto;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
+      gap: 18px;
     }
 
     .brand {
@@ -111,7 +111,50 @@
       color: var(--brand-2);
     }
 
-    .nav-actions {
+        .brand-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 220px;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fff;
+      color: var(--brand);
+      display: inline-grid;
+      place-items: center;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .social-link:hover {
+      border-color: var(--brand-2);
+      color: var(--brand-2);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(5, 5, 5, .12);
+    }
+
+    .social-link svg {
+      width: 19px;
+      height: 19px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .social-link.facebook svg {
+      fill: currentColor;
+      stroke: none;
+    }
+.nav-actions {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
@@ -862,9 +905,9 @@
 
     @media (max-width: 560px) {
       .shell { width: min(100% - 20px, 1220px); }
-      .topbar .shell { align-items: flex-start; flex-direction: column; padding: 10px 0; }
-      .brand-social { width: 100%; }
-      .social-link { flex: 1 1 98px; justify-content: center; }
+      .topbar .shell { grid-template-columns: 1fr; align-items: flex-start; padding: 10px 0; }
+      .brand-social { width: 100%; min-width: 0; justify-content: center; }
+      .social-link { width: 34px; height: 34px; }
       .nav-actions { width: 100%; }
       .nav-actions .btn { flex: 1 1 145px; }
       .filters, .form-grid { grid-template-columns: 1fr; }
@@ -1401,15 +1444,13 @@ transform:translateY(-2px) scale(1.03);
 <body>
   <nav class="topbar">
     <div class="shell">
-      <div class="brand-zone">
-        <a class="brand" href="#inicio" aria-label="Volver al inicio"><span>AUTO</span> SELECT</a>
-        <div class="brand-social" aria-label="Accesos de gestion de plataformas">
-          <a class="social-link facebook" target="_blank" rel="noopener" href="https://business.facebook.com/latest/inbox/all?business_id=428668443655088" title="Abrir Facebook Business Suite"><span class="social-icon">F</span><span>Facebook</span></a>
-          <a class="social-link instagram" target="_blank" rel="noopener" href="https://business.facebook.com/latest/settings/instagram_account?business_id=428668443655088" title="Gestionar Instagram"><span class="social-icon">I</span><span>Instagram</span></a>
-          <a class="social-link tiktok" target="_blank" rel="noopener" href="https://www.tiktok.com/login" title="Entrar en TikTok"><span class="social-icon">T</span><span>TikTok</span></a>
-          <a class="social-link coches" target="_blank" rel="noopener" href="https://www.coches.net/" title="Entrar en Coches.net"><span class="social-icon">C</span><span>Coches.net</span></a>
-          <a class="social-link milanuncios" target="_blank" rel="noopener" href="https://www.milanuncios.com/mis-anuncios/" title="Entrar en Milanuncios"><span class="social-icon">M</span><span>Milanuncios</span></a>
-        </div>
+      <a class="brand" href="#inicio" aria-label="Volver al inicio"><span>AUTO</span> SELECT</a>
+      <div class="brand-social" aria-label="Accesos de gestion de plataformas">
+        <a class="social-link facebook" target="_blank" rel="noopener" href="https://business.facebook.com/latest/inbox/all?business_id=428668443655088" title="Facebook Business Suite" aria-label="Facebook Business Suite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></a>
+        <a class="social-link instagram" target="_blank" rel="noopener" href="https://business.facebook.com/latest/settings/instagram_account?business_id=428668443655088" title="Gestionar Instagram" aria-label="Gestionar Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M17.5 6.8h.01"/></svg></a>
+        <a class="social-link tiktok" target="_blank" rel="noopener" href="https://www.tiktok.com/login" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.5a4 4 0 1 1-4-4"/><path d="M14 6c1 2.4 2.9 3.8 5 4"/></svg></a>
+        <a class="social-link coches" target="_blank" rel="noopener" href="https://www.coches.net/" title="Coches.net" aria-label="Coches.net"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l2-5h10l2 5"/><path d="M4 12h16v5H4z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg></a>
+        <a class="social-link milanuncios" target="_blank" rel="noopener" href="https://www.milanuncios.com/mis-anuncios/" title="Milanuncios" aria-label="Milanuncios"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11v6a2 2 0 0 0 2 2h2"/><path d="M4 11l14-5v12L4 13"/><path d="M18 9l2-1v8l-2-1"/></svg></a>
       </div>
       <div class="nav-actions">
         <a class="btn secondary" href="tel:+34656188878">Llamar</a>
@@ -2699,5 +2740,6 @@ document.addEventListener("click", function(event) {
 
 </body>
 </html>
+
 
 
