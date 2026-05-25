@@ -88,7 +88,7 @@
       const c=selectedCar;
       els.mount.innerHTML = `<article class="poster">
         <div class="poster-title-row"><h2 class="vehicle-title">${esc(titleOf(c))}</h2><img class="poster-title-logo" src="logo-autoselect.png" alt="AutoSelect"></div>
-        <div class="poster-main"><div><div class="poster-price"><div class="label">Precio</div><div class="amount">${money(c.price)}</div></div><div class="specs">${spec('Año',c.year)}${spec('Kilómetros',km(c.km))}${spec('Potencia',c.power?c.power+' CV':'-')}${spec('Motor',c.engine?c.engine+' cc':'-')}${spec('Combustible',c.fuel)}${spec('Cambio',c.gear)}${spec('Estado',c.status)}${spec('Matrícula',els.plate.value || c.plate || '-')}</div></div></div>
+        <div class="poster-main"><div><div class="poster-price"><div class="label">Precio</div><div class="amount">${money(c.price)}</div></div><div class="specs">${spec('Año / Year',c.year)}${spec('Kilómetros / Mileage',km(c.km))}${spec('Potencia / Power',c.power?c.power+' CV':'-')}${spec('Motor / Engine',c.engine?c.engine+' cc':'-')}${spec('Combustible / Fuel',c.fuel)}${spec('Cambio / Gearbox',c.gear)}${spec('Estado / Status',c.status)}${spec('Matrícula / Plate',els.plate.value || c.plate || '-')}</div></div></div>
         <div class="poster-benefits"><div class="poster-benefit">${esc(els.benefit1.value)}</div><div class="poster-benefit">${esc(els.benefit2.value)}</div><div class="poster-benefit">${esc(els.benefit3.value)}</div></div>
         <div class="poster-footer"><div>${webDisplay}</div><div class="phone">${phoneDisplay}</div><div>C. Isla Tabarca, 68</div></div>
       </article>`;
@@ -109,6 +109,7 @@
   </script>
 </body>
 </html>
+
 
 
 
