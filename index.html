@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -863,6 +863,8 @@
     @media (max-width: 560px) {
       .shell { width: min(100% - 20px, 1220px); }
       .topbar .shell { align-items: flex-start; flex-direction: column; padding: 10px 0; }
+      .brand-social { width: 100%; }
+      .social-link { flex: 1 1 98px; justify-content: center; }
       .nav-actions { width: 100%; }
       .nav-actions .btn { flex: 1 1 145px; }
       .filters, .form-grid { grid-template-columns: 1fr; }
@@ -1853,7 +1855,16 @@ transform:translateY(-2px) scale(1.03);
 <body>
   <nav class="topbar">
     <div class="shell">
-      <a class="brand" href="#inicio" aria-label="Volver al inicio"><span>AUTO</span> SELECT</a>
+      <div class="brand-zone">
+        <a class="brand" href="#inicio" aria-label="Volver al inicio"><span>AUTO</span> SELECT</a>
+        <div class="brand-social" aria-label="Redes sociales y plataformas AutoSelect">
+          <a class="social-link facebook" target="_blank" rel="noopener" href="https://www.facebook.com/autoselecttorrevieja" title="AutoSelect en Facebook"><span class="social-icon">F</span><span>Facebook</span></a>
+          <a class="social-link instagram" target="_blank" rel="noopener" href="https://www.instagram.com/autoselect_vehiculos/" title="AutoSelect en Instagram"><span class="social-icon">I</span><span>Instagram</span></a>
+          <a class="social-link tiktok" target="_blank" rel="noopener" href="https://www.tiktok.com/@autoselecttorrevieja" title="AutoSelect en TikTok"><span class="social-icon">T</span><span>TikTok</span></a>
+          <a class="social-link coches" target="_blank" rel="noopener" href="https://www.coches.net/concesionario/autoselect/" title="AutoSelect en Coches.net"><span class="social-icon">C</span><span>Coches.net</span></a>
+          <a class="social-link milanuncios" target="_blank" rel="noopener" href="https://www.milanuncios.com/coches-de-segunda-mano/?fromSearch=1&search=autoselect" title="AutoSelect en Milanuncios"><span class="social-icon">M</span><span>Milanuncios</span></a>
+        </div>
+      </div>
       <div class="nav-actions">
         <a class="btn secondary" href="tel:+34656188878">Llamar</a>
         <a class="btn secondary" target="_blank" rel="noopener" href="https://wa.me/34651124757">WhatsApp</a>
@@ -1877,7 +1888,7 @@ transform:translateY(-2px) scale(1.03);
         <a class="pill address" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=C.%20Isla%20Tabarca%2C%2068%2C%2003189%20Dehesa%20de%20Campoamor%2C%20Alicante">Direcci&oacute;n: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante</a>
       </div>
       <div class="hero-service-row">
-        <button class="service-tile" id="openFinanceModal" type="button">Financiación</button>
+        <button class="service-tile" id="openFinanceModal" type="button">FinanciaciÃ³n</button>
         <button class="service-tile" id="openWarrantyModal" type="button">Garant&iacute;a / Warranty</button>
         <div class="service-tile">Pre-entrega revisada</div>
         <div class="service-tile">Transferencia incluida</div>
@@ -2675,7 +2686,7 @@ transform:translateY(-2px) scale(1.03);
         els.photoStatus.textContent = "Coche guardado correctamente.";
       } catch (error) {
         console.error(error);
-        alert("No se pudo guardar en Supabase. Revisa conexión, tabla cars, bucket car-images y políticas RLS.");
+        alert("No se pudo guardar en Supabase. Revisa conexiÃ³n, tabla cars, bucket car-images y polÃ­ticas RLS.");
       }
     });
 
@@ -2876,7 +2887,7 @@ transform:translateY(-2px) scale(1.03);
     });
 
 
-    // Refuerzo para la versión pública: abrir galería al clicar la foto grande o el título.
+    // Refuerzo para la versiÃ³n pÃºblica: abrir galerÃ­a al clicar la foto grande o el tÃ­tulo.
     document.addEventListener("click", (event) => {
       const opener = event.target.closest("[data-open-gallery]");
       if (!opener || !els?.galleryModal) return;
@@ -2898,14 +2909,14 @@ transform:translateY(-2px) scale(1.03);
     <h3>Blum Seguros</h3>
 
     <p>
-      Seguros personalizados para vehículos, hogar, salud y empresas.
+      Seguros personalizados para vehÃ­culos, hogar, salud y empresas.
     </p>
 
     <div class="insurance-links">
       <a class="insurance-link"
          target="_blank"
          href="https://BlumSeguros.com">
-         Página web
+         PÃ¡gina web
       </a>
 
       <a class="insurance-link secondary"
@@ -2956,12 +2967,12 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="warranty-modal" id="warrantyModal">
   <div class="warranty-box">
     <button class="warranty-close" id="closeWarrantyModal" type="button">&times;</button>
-    <h3>Garantía / Warranty</h3>
+    <h3>GarantÃ­a / Warranty</h3>
     <p>
-      Garantía de 1 año con una empresa especializada, que incluye el motor y la caja de cambios.
-      El cliente debe solicitar más especificaciones a la hora de realizar la compra del vehículo.
-      Hay varios tipos de garantía y coberturas que podemos ofrecer.
-      También se puede ampliar por cuenta propia.
+      GarantÃ­a de 1 aÃ±o con una empresa especializada, que incluye el motor y la caja de cambios.
+      El cliente debe solicitar mÃ¡s especificaciones a la hora de realizar la compra del vehÃ­culo.
+      Hay varios tipos de garantÃ­a y coberturas que podemos ofrecer.
+      TambiÃ©n se puede ampliar por cuenta propia.
     </p>
   </div>
 </div>
@@ -3032,13 +3043,13 @@ document.addEventListener("click", function(event) {
 
 <div class="finance-modal" id="financeModal" aria-hidden="true">
   <div class="finance-box">
-    <button class="finance-close" id="closeFinanceModal" type="button" aria-label="Cerrar financiación">&times;</button>
+    <button class="finance-close" id="closeFinanceModal" type="button" aria-label="Cerrar financiaciÃ³n">&times;</button>
     <div class="finance-head">Simulador de cuotas</div>
 
     <div class="finance-body">
       <div class="finance-top">
         <div>
-          <label class="finance-label">Año de primera matriculación <span class="finance-required">*</span></label>
+          <label class="finance-label">AÃ±o de primera matriculaciÃ³n <span class="finance-required">*</span></label>
           <input class="finance-input" id="financeYearInput" type="number" value="2020">
         </div>
 
@@ -3046,16 +3057,16 @@ document.addEventListener("click", function(event) {
       </div>
 
       <div class="finance-row">
-        <label class="finance-label">Valor a financiar (€)</label>
+        <label class="finance-label">Valor a financiar (â‚¬)</label>
         <div class="finance-amount">
-          <button class="finance-step" id="financeMinus" type="button">−</button>
+          <button class="finance-step" id="financeMinus" type="button">âˆ’</button>
           <div class="finance-amount-value" id="financeAmountValue">8000</div>
           <button class="finance-step" id="financePlus" type="button">+</button>
         </div>
       </div>
 
       <div class="finance-row">
-        <label class="finance-label">Número de meses</label>
+        <label class="finance-label">NÃºmero de meses</label>
         <div class="finance-months" id="financeMonths">
           <div class="finance-month active" data-months="36">36</div>
           <div class="finance-month" data-months="48">48</div>
@@ -3074,31 +3085,31 @@ document.addEventListener("click", function(event) {
       </div>
 
       <div class="finance-result">
-        <div class="finance-result-title">Tu cuota mensual de financiación:</div>
-        <div class="finance-result-value" id="financePayment">267,13 €</div>
+        <div class="finance-result-title">Tu cuota mensual de financiaciÃ³n:</div>
+        <div class="finance-result-value" id="financePayment">267,13 â‚¬</div>
       </div>
 
       <label class="finance-check">
         <input type="checkbox" id="financeExtraServices">
-        <span>Cliente tiene interés en contratar servicios complementarios (por ejemplo, seguro de protección de Pagos).</span>
+        <span>Cliente tiene interÃ©s en contratar servicios complementarios (por ejemplo, seguro de protecciÃ³n de Pagos).</span>
       </label>
 
       <div class="finance-tin-title">Opciones de TIN</div>
 
       <div class="finance-tin">
-        <label><input type="radio" name="financeTin" value="9.99" checked>9.99 % (Comisión del colaborador de 0,50 %)</label>
-        <label><input type="radio" name="financeTin" value="8.99">8.99 % (Comisión del colaborador de 0,00 %)</label>
-        <label><input type="radio" name="financeTin" value="7.99">7.99 % (Comisión del colaborador de 0,00 %)</label>
-        <label><input type="radio" name="financeTin" value="6.99">6.99 % (Comisión del colaborador de 0,00 %)</label>
-        <label><input type="radio" name="financeTin" value="5.99">5.99 % (Comisión del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="9.99" checked>9.99 % (ComisiÃ³n del colaborador de 0,50 %)</label>
+        <label><input type="radio" name="financeTin" value="8.99">8.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="7.99">7.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="6.99">6.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="5.99">5.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
       </div>
 
       <div class="finance-legal">
-        Los cálculos ofrecidos tienen carácter orientativo y no vinculante, pudiendo sufrir alteraciones, ya que la operación está sujeta a evaluación y aprobación posterior.<br>
-        Tipo de Interés Nominal anual aplicable según opción seleccionada.<br>
-        Tasa Anual Equivalente (TAE) aplicable según condiciones finales.<br>
-        Comisión de apertura financiada 3,50 %<br>
-        Comisión de cancelación 1,00 %
+        Los cÃ¡lculos ofrecidos tienen carÃ¡cter orientativo y no vinculante, pudiendo sufrir alteraciones, ya que la operaciÃ³n estÃ¡ sujeta a evaluaciÃ³n y aprobaciÃ³n posterior.<br>
+        Tipo de InterÃ©s Nominal anual aplicable segÃºn opciÃ³n seleccionada.<br>
+        Tasa Anual Equivalente (TAE) aplicable segÃºn condiciones finales.<br>
+        ComisiÃ³n de apertura financiada 3,50 %<br>
+        ComisiÃ³n de cancelaciÃ³n 1,00 %
       </div>
 
       <div class="finance-report" id="financeReport"></div>
@@ -3138,7 +3149,7 @@ document.addEventListener("click", function(event) {
     return value.toLocaleString("es-ES", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
-    }) + " €";
+    }) + " â‚¬";
   }
 
   function financeEscapeHtml(value){
@@ -3170,20 +3181,20 @@ document.addEventListener("click", function(event) {
 
   function generateReport(){
     const year = document.getElementById("financeYearInput")?.value || "2020";
-    const extra = document.getElementById("financeExtraServices")?.checked ? "Sí" : "No";
+    const extra = document.getElementById("financeExtraServices")?.checked ? "SÃ­" : "No";
     const report = document.getElementById("financeReport");
 
     const text =
-`Informe orientativo de financiación AUTOSELECT
+`Informe orientativo de financiaciÃ³n AUTOSELECT
 
-Año de primera matriculación: ${year}
-Valor a financiar: ${amount.toLocaleString("es-ES")} €
-Número de meses: ${months}
+AÃ±o de primera matriculaciÃ³n: ${year}
+Valor a financiar: ${amount.toLocaleString("es-ES")} â‚¬
+NÃºmero de meses: ${months}
 TIN seleccionado: ${getTin().toFixed(2).replace(".", ",")} %
 Servicios complementarios: ${extra}
 Cuota mensual estimada: ${euro(getPayment())}
 
-Este cálculo es orientativo y no vinculante. La operación queda sujeta a estudio, aprobación financiera y condiciones finales de la entidad.`;
+Este cÃ¡lculo es orientativo y no vinculante. La operaciÃ³n queda sujeta a estudio, aprobaciÃ³n financiera y condiciones finales de la entidad.`;
 
     if(report){
       report.textContent = text;
@@ -3199,7 +3210,7 @@ Este cálculo es orientativo y no vinculante. La operación queda sujeta a estud
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Informe de financiación AUTOSELECT</title>
+  <title>Informe de financiaciÃ³n AUTOSELECT</title>
   <style>
     body{margin:0;font-family:Inter,Arial,sans-serif;background:#f4f4f4;color:#111;}
     main{width:min(760px,calc(100% - 32px));margin:36px auto;background:#fff;border:1px solid #ddd;padding:28px;box-shadow:0 18px 42px rgba(0,0,0,.10);}
@@ -3210,7 +3221,7 @@ Este cálculo es orientativo y no vinculante. La operación queda sujeta a estud
 </head>
 <body>
   <main>
-    <h1>Informe de financiación</h1>
+    <h1>Informe de financiaciÃ³n</h1>
     <pre>${financeEscapeHtml(text)}</pre>
     <button type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
   </main>
@@ -3220,7 +3231,7 @@ Este cálculo es orientativo y no vinculante. La operación queda sujeta a estud
       reportWindow.document.close();
       reportWindow.focus();
     }else if(report){
-      report.textContent = text + "\n\nEl navegador ha bloqueado la pestaña nueva. Permite ventanas emergentes para abrir el informe en otra pestaña.";
+      report.textContent = text + "\n\nEl navegador ha bloqueado la pestaÃ±a nueva. Permite ventanas emergentes para abrir el informe en otra pestaÃ±a.";
     }
   }
 
@@ -3329,5 +3340,6 @@ document.addEventListener("keydown", function(e){
 <script src="/widget/autoselect-chat.js" data-brand="AutoSelect"></script>
 </body>
 </html>
+
 
 

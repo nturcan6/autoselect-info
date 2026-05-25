@@ -863,6 +863,8 @@
     @media (max-width: 560px) {
       .shell { width: min(100% - 20px, 1220px); }
       .topbar .shell { align-items: flex-start; flex-direction: column; padding: 10px 0; }
+      .brand-social { width: 100%; }
+      .social-link { flex: 1 1 98px; justify-content: center; }
       .nav-actions { width: 100%; }
       .nav-actions .btn { flex: 1 1 145px; }
       .filters, .form-grid { grid-template-columns: 1fr; }
@@ -1399,7 +1401,16 @@ transform:translateY(-2px) scale(1.03);
 <body>
   <nav class="topbar">
     <div class="shell">
-      <a class="brand" href="#inicio" aria-label="Volver al inicio"><span>AUTO</span> SELECT</a>
+      <div class="brand-zone">
+        <a class="brand" href="#inicio" aria-label="Volver al inicio"><span>AUTO</span> SELECT</a>
+        <div class="brand-social" aria-label="Accesos de gestion de plataformas">
+          <a class="social-link facebook" target="_blank" rel="noopener" href="https://business.facebook.com/latest/inbox/all?business_id=428668443655088" title="Abrir Facebook Business Suite"><span class="social-icon">F</span><span>Facebook</span></a>
+          <a class="social-link instagram" target="_blank" rel="noopener" href="https://business.facebook.com/latest/settings/instagram_account?business_id=428668443655088" title="Gestionar Instagram"><span class="social-icon">I</span><span>Instagram</span></a>
+          <a class="social-link tiktok" target="_blank" rel="noopener" href="https://www.tiktok.com/login" title="Entrar en TikTok"><span class="social-icon">T</span><span>TikTok</span></a>
+          <a class="social-link coches" target="_blank" rel="noopener" href="https://www.coches.net/" title="Entrar en Coches.net"><span class="social-icon">C</span><span>Coches.net</span></a>
+          <a class="social-link milanuncios" target="_blank" rel="noopener" href="https://www.milanuncios.com/mis-anuncios/" title="Entrar en Milanuncios"><span class="social-icon">M</span><span>Milanuncios</span></a>
+        </div>
+      </div>
       <div class="nav-actions">
         <a class="btn secondary" href="tel:+34656188878">Llamar</a>
         <a class="btn secondary" target="_blank" rel="noopener" href="https://wa.me/34651124757">WhatsApp</a>
@@ -2688,4 +2699,5 @@ document.addEventListener("click", function(event) {
 
 </body>
 </html>
+
 
