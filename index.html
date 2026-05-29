@@ -2143,7 +2143,116 @@ transform:translateY(-2px) scale(1.03);
   position:relative!important;
 }
 
-</style>
+
+  
+    /* Ficha individual: correccion fuerte para movil y enlaces compartidos */
+    @media (max-width: 980px) {
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      body.detail-mode main.shell {
+        width: 100%;
+        max-width: 100%;
+        padding: 8px 0 22px;
+        margin: 0;
+      }
+
+      body.detail-mode .topbar .shell {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .car-detail {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .detail-layout {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .detail-media,
+      .detail-info {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      .detail-main-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: none;
+        aspect-ratio: auto;
+        object-fit: contain;
+        object-position: center center;
+        background: #050505;
+      }
+
+      .detail-thumbs {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 7px;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        padding: 8px;
+      }
+
+      .detail-thumb {
+        flex: 0 0 82px;
+        width: 82px;
+        min-width: 82px;
+      }
+
+      .detail-info {
+        padding: 18px 16px 22px;
+      }
+
+      .detail-info h1 {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        font-size: clamp(28px, 8vw, 38px);
+        line-height: 1.05;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .detail-price {
+        font-size: clamp(28px, 8vw, 36px);
+      }
+
+      .detail-specs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .detail-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .detail-info h1 {
+        font-size: clamp(26px, 9vw, 34px);
+      }
+
+      .detail-specs {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <nav class="topbar">
@@ -3616,6 +3725,7 @@ Este cÃ¡lculo es orientativo y no vinculante. La operaciÃ³n queda sujeta a e
     h1{margin:0 0 18px;font-size:26px;text-transform:uppercase;}
     pre{white-space:pre-wrap;font:inherit;line-height:1.55;margin:0;}
     button{margin-top:24px;border:0;border-radius:6px;background:#111;color:#fff;padding:10px 14px;font-weight:800;cursor:pointer;}
+  
   </style>
 </head>
 <body>
@@ -3739,6 +3849,8 @@ document.addEventListener("keydown", function(e){
 <script src="/widget/autoselect-chat.js" data-brand="AutoSelect"></script>
 </body>
 </html>
+
+
 
 
 
