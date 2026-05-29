@@ -1300,7 +1300,7 @@ cursor:pointer;
 }
 
 
-/* ===== PARPADEO FINANCIACION + SEGUROS ===== */
+/* ===== PARPADEO FINANCIACI&Oacute;N + SEGUROS ===== */
 .service-tile[href*="lendrock"],
 #openInsuranceModal{
   
@@ -1328,7 +1328,7 @@ cursor:pointer;
 }
 
 
-/* ===== HOVER EFFECT FINANCIACION + SEGUROS ===== */
+/* ===== HOVER EFFECT FINANCIACI&Oacute;N + SEGUROS ===== */
 .service-tile[href*="lendrock"],
 #openInsuranceModal{
   transition:all .28s ease;
@@ -1499,7 +1499,7 @@ transform:translateY(-2px) scale(1.03);
 }
 
 
-/* ===== FINANCIACION HOVER ===== */
+/* ===== FINANCIACI&Oacute;N HOVER ===== */
 #openFinanceModal{
 transition:all .28s ease;
 cursor:pointer;
@@ -1824,7 +1824,7 @@ transform:translateY(-2px) scale(1.03);
 }
 
 
-/* ===== CALCULADORA FINANCIACION LOCAL ===== */
+/* ===== CALCULADORA FINANCIACI&Oacute;N LOCAL ===== */
 #openFinanceModal{
   transition:all .28s ease;
   cursor:pointer;
@@ -2179,7 +2179,7 @@ transform:translateY(-2px) scale(1.03);
         <a class="pill address" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=C.%20Isla%20Tabarca%2C%2068%2C%2003189%20Dehesa%20de%20Campoamor%2C%20Alicante">Direcci&oacute;n: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante</a>
       </div>
       <div class="hero-service-row">
-        <button class="service-tile" id="openFinanceModal" type="button">FinanciaciÃ³n</button>
+        <button class="service-tile" id="openFinanceModal" type="button">Financiaci&oacute;n</button>
         <button class="service-tile" id="openWarrantyModal" type="button">Garant&iacute;a / Warranty</button>
         <div class="service-tile">Pre-entrega revisada</div>
         <div class="service-tile">Transferencia incluida</div>
@@ -2873,7 +2873,7 @@ transform:translateY(-2px) scale(1.03);
               <div class="detail-spec"><span>Combustible</span><strong>${displayValue(car.fuel)}</strong></div>
               <div class="detail-spec"><span>Cambio</span><strong>${displayValue(car.gear)}</strong></div>
             </div>
-            <div class="detail-description">${escapeHtml(car.description || "Consulta disponibilidad, financiacion y garantia.")}</div>
+            <div class="detail-description">${escapeHtml(car.description || "Consulta disponibilidad, financiaci\u00f3n y garant\u00eda.")}</div>
             <div class="detail-actions">
               <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">Enviar por WhatsApp</a>
               <a class="btn secondary" href="tel:+34656188878">Llamar</a>
@@ -2928,7 +2928,7 @@ transform:translateY(-2px) scale(1.03);
                 <div class="spec"><span>Combustible</span><strong>${displayValue(car.fuel)}</strong></div>
                 <div class="spec"><span>Cambio</span><strong>${displayValue(car.gear)}</strong></div>
               </div>
-              <div class="description">${escapeHtml(car.description || "Consulta disponibilidad, financiacion y garantia.")}</div>
+              <div class="description">${escapeHtml(car.description || "Consulta disponibilidad, financiaci\u00f3n y garant\u00eda.")}</div>
               <div class="car-actions">
                 <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">WhatsApp</a>
                 <a class="btn secondary" href="tel:+34656188878">Llamar</a>
@@ -3442,7 +3442,7 @@ document.addEventListener("click", function(event) {
 
 <div class="finance-modal" id="financeModal" aria-hidden="true">
   <div class="finance-box">
-    <button class="finance-close" id="closeFinanceModal" type="button" aria-label="Cerrar financiaciÃ³n">&times;</button>
+    <button class="finance-close" id="closeFinanceModal" type="button" aria-label="Cerrar financiaci&oacute;n">&times;</button>
     <div class="finance-head">Simulador de cuotas</div>
 
     <div class="finance-body">
@@ -3484,7 +3484,7 @@ document.addEventListener("click", function(event) {
       </div>
 
       <div class="finance-result">
-        <div class="finance-result-title">Tu cuota mensual de financiaciÃ³n:</div>
+        <div class="finance-result-title">Tu cuota mensual de financiaci&oacute;n:</div>
         <div class="finance-result-value" id="financePayment">267,13 â‚¬</div>
       </div>
 
@@ -3584,7 +3584,7 @@ document.addEventListener("click", function(event) {
     const report = document.getElementById("financeReport");
 
     const text =
-`Informe orientativo de financiaciÃ³n AUTOSELECT
+`Informe orientativo de financiaci\u00f3n AUTOSELECT
 
 AÃ±o de primera matriculaciÃ³n: ${year}
 Valor a financiar: ${amount.toLocaleString("es-ES")} â‚¬
@@ -3609,7 +3609,7 @@ Este cÃ¡lculo es orientativo y no vinculante. La operaciÃ³n queda sujeta a e
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Informe de financiaciÃ³n AUTOSELECT</title>
+  <title>Informe de financiaci\u00f3n AUTOSELECT</title>
   <style>
     body{margin:0;font-family:Inter,Arial,sans-serif;background:#f4f4f4;color:#111;}
     main{width:min(760px,calc(100% - 32px));margin:36px auto;background:#fff;border:1px solid #ddd;padding:28px;box-shadow:0 18px 42px rgba(0,0,0,.10);}
@@ -3620,7 +3620,7 @@ Este cÃ¡lculo es orientativo y no vinculante. La operaciÃ³n queda sujeta a e
 </head>
 <body>
   <main>
-    <h1>Informe de financiaciÃ³n</h1>
+    <h1>Informe de financiaci\u00f3n</h1>
     <pre>${financeEscapeHtml(text)}</pre>
     <button type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
   </main>
@@ -3739,6 +3739,8 @@ document.addEventListener("keydown", function(e){
 <script src="/widget/autoselect-chat.js" data-brand="AutoSelect"></script>
 </body>
 </html>
+
+
 
 
 
