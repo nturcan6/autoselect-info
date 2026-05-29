@@ -722,6 +722,97 @@
     .car-title-text:hover {
       color: var(--brand-2);
     }
+    @media (max-width: 760px) {
+      body.detail-mode main.shell {
+        width: 100%;
+        padding: 10px 10px 24px;
+      }
+
+      .car-detail {
+        margin: 10px 0 24px;
+        border-width: 1px;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .car-detail .detail-back {
+        margin: 14px 14px 10px;
+        font-size: 12px;
+      }
+
+      .detail-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-media {
+        min-height: auto;
+      }
+
+      .detail-main-image {
+        aspect-ratio: 4 / 3;
+        max-height: 42vh;
+        object-fit: contain;
+      }
+
+      .detail-thumbs {
+        display: flex;
+        grid-template-columns: none;
+        gap: 6px;
+        padding: 8px;
+        overflow-x: auto;
+      }
+
+      .detail-thumb {
+        flex: 0 0 76px;
+      }
+
+      .detail-info {
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .detail-info h1 {
+        font-size: clamp(24px, 9vw, 36px);
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+      }
+
+      .detail-price {
+        font-size: clamp(24px, 8vw, 34px);
+      }
+
+      .detail-specs {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .detail-spec {
+        min-height: 52px;
+        padding: 8px;
+      }
+
+      .detail-spec strong {
+        font-size: 16px;
+      }
+
+      .detail-description {
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .detail-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-share {
+        grid-column: auto;
+      }
+
+      .car-media.car-open-link,
+      .car-media.car-open-link img {
+        cursor: pointer;
+      }
+    }
     .auth-card {
       max-width: 520px;
       display: grid;
@@ -3648,6 +3739,8 @@ document.addEventListener("keydown", function(e){
 <script src="/widget/autoselect-chat.js" data-brand="AutoSelect"></script>
 </body>
 </html>
+
+
 
 
 
