@@ -563,6 +563,165 @@
       border-bottom: 1px solid var(--line);
     }
 
+
+    .car-detail {
+      margin: 24px 0 34px;
+      border: 2px solid #111;
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    body.detail-mode .hero,
+    body.detail-mode .filters,
+    body.detail-mode .stock-head,
+    body.detail-mode #cars,
+    body.detail-mode #admin {
+      display: none !important;
+    }
+
+    body.detail-mode main.shell {
+      padding-top: 24px;
+    }
+
+    .detail-back {
+      display: inline-flex;
+      width: fit-content;
+      margin: 0 0 16px;
+      color: var(--brand);
+      font-weight: 900;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      gap: 0;
+    }
+
+    .detail-media {
+      background: #050505;
+      min-height: 420px;
+    }
+
+    .detail-main-image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      display: block;
+      object-fit: cover;
+      background: #111;
+    }
+
+    .detail-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+      gap: 8px;
+      padding: 10px;
+      background: #111;
+    }
+
+    .detail-thumb {
+      border: 2px solid transparent;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+    }
+
+    .detail-thumb.active {
+      border-color: var(--brand-2);
+    }
+
+    .detail-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .detail-info {
+      padding: 24px;
+      display: grid;
+      align-content: start;
+      gap: 16px;
+    }
+
+    .detail-info h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    .detail-price {
+      color: var(--brand-2);
+      font-size: clamp(28px, 3.4vw, 44px);
+      font-weight: 1000;
+      line-height: 1;
+    }
+
+    .detail-specs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .detail-spec {
+      border: 1px solid #111;
+      padding: 10px;
+      min-height: 58px;
+    }
+
+    .detail-spec span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .detail-spec strong {
+      display: block;
+      color: #111;
+      font-size: 19px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    .detail-description {
+      color: #1f2933;
+      font-size: 16px;
+      line-height: 1.55;
+      white-space: pre-line;
+    }
+
+    .detail-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .detail-actions .btn.secondary {
+      text-align: center;
+    }
+
+    .detail-share {
+      grid-column: 1 / -1;
+    }
+
+    .car-open-link {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .car-open-link:hover .car-title-text,
+    .car-title-text:hover {
+      color: var(--brand-2);
+    }
     .auth-card {
       max-width: 520px;
       display: grid;
@@ -1984,6 +2143,8 @@ transform:translateY(-2px) scale(1.03);
       </div>
     </div>
 
+    <section class="car-detail hidden" id="carDetail"></section>
+
     <section class="cars" id="cars"></section>
 
     <section class="admin hidden requires-login" id="admin">
@@ -2213,6 +2374,7 @@ transform:translateY(-2px) scale(1.03);
 
     const els = {
       cars: document.querySelector("#cars"),
+      carDetail: document.querySelector("#carDetail"),
       stockCount: document.querySelector("#stockCount"),
       search: document.querySelector("#search"),
       fuelFilter: document.querySelector("#fuelFilter"),
@@ -2552,6 +2714,85 @@ transform:translateY(-2px) scale(1.03);
       els.galleryThumbs.classList.toggle("hidden", galleryImages.length < 2);
     }
 
+
+    function activeCarId() {
+      return new URLSearchParams(window.location.search).get("car");
+    }
+
+    function carPageUrl(car) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("car", car.id);
+      url.hash = "";
+      return url.toString();
+    }
+
+    function findCarById(carId) {
+      return cars.find((item) => String(item.id) === String(carId));
+    }
+
+    function renderCarDetail() {
+      const carId = activeCarId();
+      if (!carId || !els.carDetail) {
+        document.body.classList.remove("detail-mode");
+        els.carDetail?.classList.add("hidden");
+        return;
+      }
+      document.body.classList.add("detail-mode");
+      const car = findCarById(carId);
+      if (!car) {
+        document.title = "Vehiculo no encontrado | AUTOSELECT";
+        els.carDetail.classList.remove("hidden");
+        els.carDetail.innerHTML = `
+          <div class="detail-info">
+            <a class="detail-back" href="${escapeHtml(location.pathname)}">Volver al catalogo</a>
+            <h1>Vehiculo no encontrado</h1>
+            <div class="detail-description">Este coche ya no esta disponible o el enlace no es correcto.</div>
+          </div>
+        `;
+        return;
+      }
+      const images = carImages(car);
+      const mainImage = images[0] || fallbackImage;
+      const safeTitle = escapeHtml(car.title || "Vehiculo AUTOSELECT");
+      const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent(`Hola AUTOSELECT, me interesa este coche: ${car.title} - ${eur(car.price)}. Enlace: ${carPageUrl(car)}`)}`;
+      document.title = `${car.title || "Vehiculo"} | AUTOSELECT`;
+      els.carDetail.classList.remove("hidden");
+      els.carDetail.innerHTML = `
+        <a class="detail-back" href="${escapeHtml(location.pathname)}">Volver al catalogo</a>
+        <div class="detail-layout">
+          <div class="detail-media">
+            <img class="detail-main-image" id="detailMainImage" src="${escapeHtml(mainImage)}" alt="${safeTitle}" loading="eager" onerror="this.src='${fallbackImage}'" />
+            <div class="detail-thumbs">
+              ${(images.length ? images : [fallbackImage]).map((image, index) => `
+                <button class="detail-thumb ${index === 0 ? "active" : ""}" type="button" data-detail-image="${escapeHtml(image)}">
+                  <img src="${escapeHtml(image)}" alt="${safeTitle} foto ${index + 1}" loading="lazy" onerror="this.src='${fallbackImage}'" />
+                </button>
+              `).join("")}
+            </div>
+          </div>
+          <div class="detail-info">
+            <span class="badge ${badgeClass(car.status)}">${escapeHtml(car.status || "Disponible")}</span>
+            <h1>${safeTitle}</h1>
+            <div class="detail-price">${eur(car.price)}</div>
+            <div class="detail-specs">
+              <div class="detail-spec"><span>A&ntilde;o</span><strong>${car.year || "--"}</strong></div>
+              <div class="detail-spec"><span>Kil&oacute;metros</span><strong>${km(car.km)}</strong></div>
+              <div class="detail-spec"><span>Potencia</span><strong>${power(car.power)}</strong></div>
+              <div class="detail-spec"><span>Cilindrada</span><strong>${engine(car.engine)}</strong></div>
+              <div class="detail-spec"><span>Combustible</span><strong>${displayValue(car.fuel)}</strong></div>
+              <div class="detail-spec"><span>Cambio</span><strong>${displayValue(car.gear)}</strong></div>
+            </div>
+            <div class="detail-description">${escapeHtml(car.description || "Consulta disponibilidad, financiacion y garantia.")}</div>
+            <div class="detail-actions">
+              <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">Enviar por WhatsApp</a>
+              <a class="btn secondary" href="tel:+34656188878">Llamar</a>
+              <button class="btn secondary detail-share" type="button" data-copy-car-link="${escapeHtml(carPageUrl(car))}">Copiar enlace de este coche</button>
+            </div>
+          </div>
+        </div>
+      `;
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
     function renderCars() {
       const list = filteredCars();
       const totalForSale = cars.filter((car) => car.status !== "Vendido").length;
@@ -2565,16 +2806,17 @@ transform:translateY(-2px) scale(1.03);
         const images = carImages(car);
         const mainImage = images[0] || fallbackImage;
         const galleryId = `gallery-${car.id}`;
+        const detailUrl = carPageUrl(car);
         const safeTitle = escapeHtml(car.title || "Vehiculo AUTOSELECT");
         const safeStatus = escapeHtml(car.status || "Disponible");
         const photoText = `${images.length || 1} foto${(images.length || 1) === 1 ? "" : "s"}`;
         return `
           <article class="car">
-            <div class="car-media" data-open-gallery="${escapeHtml(car.id)}" title="Abrir galer&iacute;a HD">
+            <a class="car-media car-open-link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener" title="Abrir ficha individual">
               <img id="${escapeHtml(galleryId)}" src="${escapeHtml(mainImage)}" alt="${safeTitle}" loading="lazy" onerror="this.src='${fallbackImage}'" />
               <span class="badge ${badgeClass(car.status)}">${safeStatus}</span>
               <span class="photo-count">${photoText}</span>
-            </div>
+            </a>
             <div class="car-body">
               <div class="thumbs">
                 ${(images.length ? images : [fallbackImage]).map((image, index) => `
@@ -2584,7 +2826,7 @@ transform:translateY(-2px) scale(1.03);
                 `).join("")}
               </div>
               <div class="car-title">
-                <strong data-open-gallery="${escapeHtml(car.id)}" title="Abrir galer&iacute;a HD">${safeTitle}</strong>
+                <a class="car-open-link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener" title="Abrir ficha individual"><strong class="car-title-text">${safeTitle}</strong></a>
                 <div class="price">${eur(car.price)}</div>
               </div>
               <div class="specs">
@@ -2599,6 +2841,7 @@ transform:translateY(-2px) scale(1.03);
               <div class="car-actions">
                 <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">WhatsApp</a>
                 <a class="btn secondary" href="tel:+34656188878">Llamar</a>
+                <a class="btn secondary car-share-link" target="_blank" rel="noopener" href="${escapeHtml(detailUrl)}">Ver ficha / compartir</a>
               </div>
             </div>
           </article>
@@ -2648,6 +2891,7 @@ transform:translateY(-2px) scale(1.03);
       els.gearFilter.value = [...els.gearFilter.options].some((option) => option.value === oldGear) ? oldGear : "";
       els.statusFilter.value = [...els.statusFilter.options].some((option) => option.value === oldStatus) ? oldStatus : "";
       renderCars();
+      renderCarDetail();
       renderAdminSummary();
       renderAdminList();
     }
@@ -2928,6 +3172,29 @@ transform:translateY(-2px) scale(1.03);
     });
 
 
+
+    document.addEventListener("click", async (event) => {
+      const detailThumb = event.target.closest("[data-detail-image]");
+      if (detailThumb) {
+        const image = detailThumb.dataset.detailImage;
+        const main = document.querySelector("#detailMainImage");
+        if (main && image) main.src = image;
+        document.querySelectorAll(".detail-thumb").forEach((button) => button.classList.toggle("active", button === detailThumb));
+        return;
+      }
+
+      const copyLink = event.target.closest("[data-copy-car-link]");
+      if (!copyLink) return;
+      const url = copyLink.dataset.copyCarLink;
+      try {
+        await navigator.clipboard.writeText(url);
+        const previous = copyLink.textContent;
+        copyLink.textContent = "Enlace copiado";
+        setTimeout(() => { copyLink.textContent = previous; }, 1400);
+      } catch {
+        window.prompt("Copia este enlace del coche:", url);
+      }
+    });
     // Refuerzo para la versiÃ³n pÃºblica: abrir galerÃ­a al clicar la foto grande o el tÃ­tulo.
     document.addEventListener("click", (event) => {
       const opener = event.target.closest("[data-open-gallery]");
@@ -3381,6 +3648,10 @@ document.addEventListener("keydown", function(e){
 <script src="/widget/autoselect-chat.js" data-brand="AutoSelect"></script>
 </body>
 </html>
+
+
+
+
 
 
 
