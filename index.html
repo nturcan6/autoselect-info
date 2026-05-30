@@ -154,6 +154,20 @@
       fill: currentColor;
       stroke: none;
     }
+
+    .language-picker {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0 34px 0 10px;
+      background: #fff;
+      color: var(--brand);
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      max-width: 150px;
+    }
+
 .nav-actions {
       display: flex;
       gap: 8px;
@@ -1159,6 +1173,7 @@
       .brand-social { width: 100%; min-width: 0; justify-content: center; }
       .social-link { width: 34px; height: 34px; }
       .nav-actions { width: 100%; }
+      .language-picker { flex: 1 1 100%; max-width: none; }
       .nav-actions .btn { flex: 1 1 145px; }
       .filters, .form-grid { grid-template-columns: 1fr; }
       .photo-preview { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -2257,7 +2272,7 @@ transform:translateY(-2px) scale(1.03);
 <body>
   <nav class="topbar">
     <div class="shell">
-      <a class="brand" href="/" aria-label="Volver al inicio"><span>AUTO</span> SELECT</a>
+      <a class="brand" href="/" aria-label="Volver al inicio" data-i18n-aria="brandHome"><span>AUTO</span> SELECT</a>
       <div class="brand-social" aria-label="Redes sociales y plataformas AutoSelect">
         <a class="social-link facebook" target="_blank" rel="noopener" href="https://www.facebook.com/autoselecttorrevieja" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></a>
         <a class="social-link instagram" target="_blank" rel="noopener" href="https://www.instagram.com/autoselect_vehiculos/" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M17.5 6.8h.01"/></svg></a>
@@ -2266,9 +2281,24 @@ transform:translateY(-2px) scale(1.03);
         <a class="social-link milanuncios" target="_blank" rel="noopener" href="https://www.milanuncios.com/coches-de-segunda-mano/?fromSearch=1&search=autoselect" title="Milanuncios" aria-label="Milanuncios"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11v6a2 2 0 0 0 2 2h2"/><path d="M4 11l14-5v12L4 13"/><path d="M18 9l2-1v8l-2-1"/></svg></a>
       </div>
       <div class="nav-actions">
-        <a class="btn secondary" href="tel:+34656188878">Llamar</a>
+        <select class="language-picker" id="languageSelect" aria-label="Idioma">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="no">Norsk</option>
+          <option value="sv">Svenska</option>
+          <option value="be">Belga</option>
+          <option value="ru">Русский</option>
+          <option value="ar">العربية</option>
+          <option value="nl">Nederlands</option>
+          <option value="pl">Polski</option>
+          <option value="zh">中文</option>
+          <option value="ro">Română</option>
+        </select>
+        <a class="btn secondary" href="tel:+34656188878" data-i18n="call">Llamar</a>
         <a class="btn secondary" target="_blank" rel="noopener" href="https://wa.me/34651124757">WhatsApp</a>
-        <button class="btn gold hidden" id="toggleAdmin" type="button" aria-hidden="true" tabindex="-1">Gestionar cat&aacute;logo</button>
+        <button class="btn gold hidden" id="toggleAdmin" type="button" aria-hidden="true" tabindex="-1" data-i18n="manageCatalog">Gestionar cat&aacute;logo</button>
       </div>
     </div>
   </nav>
@@ -2281,18 +2311,18 @@ transform:translateY(-2px) scale(1.03);
     </div>
     <div class="shell hero-content">
       <h1><span>Auto</span> Select</h1>
-      <p><strong>BUYING AND SELLING CARS.</strong> Compra venta de coches seleccionados, revisados y listos para entrega. Aceptamos tu coche como parte de pago.</p>
+      <p data-i18n="heroText"><strong>BUYING AND SELLING CARS.</strong> Compra venta de coches seleccionados, revisados y listos para entrega. Aceptamos tu coche como parte de pago.</p>
       <div class="hero-info">
         <a class="pill red" href="tel:+34656188878">TLF: +34 656 18 88 78</a>
-        <a class="pill" target="_blank" rel="noopener" href="https://wa.me/34651124757">WhatsApp directo</a>
-        <a class="pill address" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=C.%20Isla%20Tabarca%2C%2068%2C%2003189%20Dehesa%20de%20Campoamor%2C%20Alicante">Direcci&oacute;n: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante</a>
+        <a class="pill" target="_blank" rel="noopener" href="https://wa.me/34651124757" data-i18n="directWhatsapp">WhatsApp directo</a>
+        <a class="pill address" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=C.%20Isla%20Tabarca%2C%2068%2C%2003189%20Dehesa%20de%20Campoamor%2C%20Alicante" data-i18n="address">Direcci&oacute;n: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante</a>
       </div>
       <div class="hero-service-row">
-        <button class="service-tile" id="openFinanceModal" type="button">Financiaci&oacute;n</button>
-        <button class="service-tile" id="openWarrantyModal" type="button">Garant&iacute;a / Warranty</button>
-        <div class="service-tile">Pre-entrega revisada</div>
-        <div class="service-tile">Transferencia incluida</div>
-        <button class="service-tile" id="openInsuranceModal" type="button">Seguros / Insurance</button>
+        <button class="service-tile" id="openFinanceModal" type="button" data-i18n="financing">Financiaci&oacute;n</button>
+        <button class="service-tile" id="openWarrantyModal" type="button" data-i18n="warranty">Garant&iacute;a / Warranty</button>
+        <div class="service-tile" data-i18n="preDelivery">Pre-entrega revisada</div>
+        <div class="service-tile" data-i18n="transferIncluded">Transferencia incluida</div>
+        <button class="service-tile" id="openInsuranceModal" type="button" data-i18n="insurance">Seguros / Insurance</button>
       </div>
     </div>
   </section>
@@ -2300,46 +2330,46 @@ transform:translateY(-2px) scale(1.03);
   <main class="shell">
     <section class="filters">
       <div class="field">
-        <label for="search">Buscar</label>
-        <input id="search" placeholder="Marca, modelo, a&ntilde;o, combustible..." />
+        <label for="search" data-i18n="search">Buscar</label>
+        <input id="search" placeholder="Marca, modelo, a&ntilde;o, combustible..." data-i18n-placeholder="searchPlaceholder" />
       </div>
       <div class="field">
-        <label for="fuelFilter">Combustible</label>
+        <label for="fuelFilter" data-i18n="fuel">Combustible</label>
         <select id="fuelFilter"></select>
       </div>
       <div class="field">
-        <label for="gearFilter">Cambio</label>
+        <label for="gearFilter" data-i18n="gear">Cambio</label>
         <select id="gearFilter"></select>
       </div>
       <div class="field">
-        <label for="statusFilter">Estado</label>
+        <label for="statusFilter" data-i18n="status">Estado</label>
         <select id="statusFilter"></select>
       </div>
       <div class="field">
-        <label for="priceFilter">Precio max.</label>
-        <input id="priceFilter" type="number" min="0" step="500" placeholder="Ej. 20000" />
+        <label for="priceFilter" data-i18n="maxPrice">Precio max.</label>
+        <input id="priceFilter" type="number" min="0" step="500" placeholder="Ej. 20000" data-i18n-placeholder="pricePlaceholder" />
       </div>
       <div class="field">
-        <label for="sortFilter">Ordenar</label>
+        <label for="sortFilter" data-i18n="sort">Ordenar</label>
         <select id="sortFilter">
-          <option value="featured">Destacados</option>
-          <option value="priceAsc">Precio: menor</option>
-          <option value="priceDesc">Precio: mayor</option>
-          <option value="yearDesc">A&ntilde;o: nuevo</option>
-          <option value="kmAsc">Km: menos</option>
+          <option value="featured" data-i18n="featured">Destacados</option>
+          <option value="priceAsc" data-i18n="priceAsc">Precio: menor</option>
+          <option value="priceDesc" data-i18n="priceDesc">Precio: mayor</option>
+          <option value="yearDesc" data-i18n="yearDesc">A&ntilde;o: nuevo</option>
+          <option value="kmAsc" data-i18n="kmAsc">Km: menos</option>
         </select>
       </div>
-      <button class="btn secondary" id="clearFilters" type="button">Limpiar</button>
+      <button class="btn secondary" id="clearFilters" type="button" data-i18n="clear">Limpiar</button>
     </section>
 
     <div class="stock-head">
       <div>
-        <h2>Veh&iacute;culos disponibles</h2>
-        <div class="muted" id="stockCount">Cargando cat&aacute;logo...</div>
+        <h2 data-i18n="availableVehicles">Veh&iacute;culos disponibles</h2>
+        <div class="muted" id="stockCount" data-i18n="loadingCatalog">Cargando cat&aacute;logo...</div>
       </div>
       <div class="stock-actions">
-        <a class="btn secondary" href="#cars">Ver stock</a>
-        <a class="btn" target="_blank" rel="noopener" href="https://wa.me/34651124757?text=Hola%20AUTOSELECT%2C%20quiero%20informacion%20sobre%20un%20coche.">Consultar stock</a>
+        <a class="btn secondary" href="#cars" data-i18n="viewStock">Ver stock</a>
+        <a class="btn" target="_blank" rel="noopener" href="https://wa.me/34651124757?text=Hola%20AUTOSELECT%2C%20quiero%20informacion%20sobre%20un%20coche." data-i18n="askStock">Consultar stock</a>
       </div>
     </div>
 
@@ -2500,6 +2530,45 @@ transform:translateY(-2px) scale(1.03);
     const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     const PHOTO_BUCKET = "car-images";
     const phone = "34651124757";
+
+    const languages = {
+      es:["Español","es","ltr"], en:["English","en","ltr"], fr:["Français","fr","ltr"], de:["Deutsch","de","ltr"],
+      no:["Norsk","no","ltr"], sv:["Svenska","sv","ltr"], be:["Belga","fr-BE","ltr"], ru:["Русский","ru","ltr"],
+      ar:["العربية","ar","rtl"], nl:["Nederlands","nl","ltr"], pl:["Polski","pl","ltr"], zh:["中文","zh","ltr"], ro:["Română","ro","ltr"]
+    };
+    const i18n = {
+      es:{brandHome:"Volver al inicio",call:"Llamar",manageCatalog:"Gestionar catálogo",heroText:"<strong>BUYING AND SELLING CARS.</strong> Compra venta de coches seleccionados, revisados y listos para entrega. Aceptamos tu coche como parte de pago.",directWhatsapp:"WhatsApp directo",address:"Dirección: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Financiación",warranty:"Garantía / Warranty",preDelivery:"Pre-entrega revisada",transferIncluded:"Transferencia incluida",insurance:"Seguros / Insurance",search:"Buscar",searchPlaceholder:"Marca, modelo, año, combustible...",fuel:"Combustible",gear:"Cambio",status:"Estado",maxPrice:"Precio max.",pricePlaceholder:"Ej. 20000",sort:"Ordenar",featured:"Destacados",priceAsc:"Precio: menor",priceDesc:"Precio: mayor",yearDesc:"Año: nuevo",kmAsc:"Km: menos",clear:"Limpiar",availableVehicles:"Vehículos disponibles",loadingCatalog:"Cargando catálogo...",viewStock:"Ver stock",askStock:"Consultar stock",all:"Todos",forSale:"En venta",noResults:"No hay vehículos con estos filtros.",stockCount:"{visible} vehículo{plural} visible{plural} de {total} en venta",backCatalog:"Volver al catálogo",notFoundTitle:"Vehículo no encontrado",notFoundText:"Este coche ya no está disponible o el enlace no es correcto.",year:"Año",km:"Kilómetros",power:"Potencia",engine:"Cilindrada",descriptionFallback:"Consulta disponibilidad, financiación y garantía.",sendWhatsapp:"Enviar por WhatsApp",copyLink:"Copiar enlace de este coche",viewShare:"Ver ficha / compartir",photos:"foto",photosPlural:"fotos",whatsappMsg:"Hola AUTOSELECT, me interesa este coche: {title} - {price}. Quiero más información.",whatsappDetailMsg:"Hola AUTOSELECT, me interesa este coche: {title} - {price}. Enlace: {url}"},
+      en:{call:"Call",manageCatalog:"Manage catalog",heroText:"<strong>BUYING AND SELLING CARS.</strong> Selected, checked cars ready for delivery. We accept your car as part payment.",directWhatsapp:"Direct WhatsApp",address:"Address: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Financing",warranty:"Warranty",preDelivery:"Pre-delivery checked",transferIncluded:"Transfer included",insurance:"Insurance",search:"Search",searchPlaceholder:"Make, model, year, fuel...",fuel:"Fuel",gear:"Gearbox",status:"Status",maxPrice:"Max price",pricePlaceholder:"Ex. 20000",sort:"Sort",featured:"Featured",priceAsc:"Price: low",priceDesc:"Price: high",yearDesc:"Year: newest",kmAsc:"Km: lowest",clear:"Clear",availableVehicles:"Available vehicles",loadingCatalog:"Loading catalog...",viewStock:"View stock",askStock:"Ask about stock",all:"All",forSale:"For sale",noResults:"No vehicles match these filters.",stockCount:"{visible} vehicle{plural} visible out of {total} for sale",backCatalog:"Back to catalog",notFoundTitle:"Vehicle not found",notFoundText:"This car is no longer available or the link is incorrect.",year:"Year",km:"Kilometers",power:"Power",engine:"Engine",descriptionFallback:"Ask about availability, financing and warranty.",sendWhatsapp:"Send by WhatsApp",copyLink:"Copy this car link",viewShare:"Open / share",photos:"photo",photosPlural:"photos",whatsappMsg:"Hello AUTOSELECT, I am interested in this car: {title} - {price}. I would like more information.",whatsappDetailMsg:"Hello AUTOSELECT, I am interested in this car: {title} - {price}. Link: {url}"},
+      fr:{call:"Appeler",manageCatalog:"Gérer le catalogue",heroText:"<strong>ACHAT ET VENTE DE VOITURES.</strong> Voitures sélectionnées, contrôlées et prêtes à livrer. Nous acceptons votre voiture en reprise.",directWhatsapp:"WhatsApp direct",address:"Adresse : C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Financement",warranty:"Garantie",preDelivery:"Pré-livraison vérifiée",transferIncluded:"Transfert inclus",insurance:"Assurance",search:"Rechercher",searchPlaceholder:"Marque, modèle, année, carburant...",fuel:"Carburant",gear:"Boîte",status:"État",maxPrice:"Prix max.",pricePlaceholder:"Ex. 20000",sort:"Trier",featured:"En vedette",priceAsc:"Prix : bas",priceDesc:"Prix : haut",yearDesc:"Année : récent",kmAsc:"Km : moins",clear:"Effacer",availableVehicles:"Véhicules disponibles",loadingCatalog:"Chargement du catalogue...",viewStock:"Voir le stock",askStock:"Consulter le stock",all:"Tous",forSale:"En vente",noResults:"Aucun véhicule avec ces filtres.",stockCount:"{visible} véhicule{plural} visible{plural} sur {total} en vente",backCatalog:"Retour au catalogue",notFoundTitle:"Véhicule introuvable",notFoundText:"Cette voiture n'est plus disponible ou le lien est incorrect.",year:"Année",km:"Kilomètres",power:"Puissance",engine:"Cylindrée",descriptionFallback:"Demandez la disponibilité, le financement et la garantie.",sendWhatsapp:"Envoyer par WhatsApp",copyLink:"Copier le lien",viewShare:"Voir / partager",photos:"photo",photosPlural:"photos",whatsappMsg:"Bonjour AUTOSELECT, cette voiture m'intéresse : {title} - {price}. Je voudrais plus d'informations.",whatsappDetailMsg:"Bonjour AUTOSELECT, cette voiture m'intéresse : {title} - {price}. Lien : {url}"},
+      de:{call:"Anrufen",manageCatalog:"Katalog verwalten",heroText:"<strong>AUTOANKAUF UND AUTOVERKAUF.</strong> Ausgewählte, geprüfte Fahrzeuge, bereit zur Übergabe. Wir nehmen Ihr Auto in Zahlung.",directWhatsapp:"WhatsApp direkt",address:"Adresse: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Finanzierung",warranty:"Garantie",preDelivery:"Vor Übergabe geprüft",transferIncluded:"Ummeldung inklusive",insurance:"Versicherung",search:"Suchen",searchPlaceholder:"Marke, Modell, Jahr, Kraftstoff...",fuel:"Kraftstoff",gear:"Getriebe",status:"Status",maxPrice:"Max. Preis",pricePlaceholder:"Z.B. 20000",sort:"Sortieren",featured:"Empfohlen",priceAsc:"Preis: niedrig",priceDesc:"Preis: hoch",yearDesc:"Jahr: neu",kmAsc:"Km: niedrig",clear:"Löschen",availableVehicles:"Verfügbare Fahrzeuge",loadingCatalog:"Katalog wird geladen...",viewStock:"Bestand ansehen",askStock:"Bestand anfragen",all:"Alle",forSale:"Zum Verkauf",noResults:"Keine Fahrzeuge mit diesen Filtern.",stockCount:"{visible} Fahrzeug{plural} sichtbar von {total} zum Verkauf",backCatalog:"Zurück zum Katalog",notFoundTitle:"Fahrzeug nicht gefunden",notFoundText:"Dieses Auto ist nicht mehr verfügbar oder der Link ist falsch.",year:"Jahr",km:"Kilometer",power:"Leistung",engine:"Hubraum",descriptionFallback:"Fragen Sie nach Verfügbarkeit, Finanzierung und Garantie.",sendWhatsapp:"Per WhatsApp senden",copyLink:"Link kopieren",viewShare:"Ansehen / teilen",photos:"Foto",photosPlural:"Fotos",whatsappMsg:"Hallo AUTOSELECT, ich interessiere mich für dieses Auto: {title} - {price}. Ich möchte mehr Informationen.",whatsappDetailMsg:"Hallo AUTOSELECT, ich interessiere mich für dieses Auto: {title} - {price}. Link: {url}"},
+      no:{call:"Ring",manageCatalog:"Administrer katalog",heroText:"<strong>KJØP OG SALG AV BILER.</strong> Utvalgte og kontrollerte biler klare for levering. Vi tar bilen din i innbytte.",directWhatsapp:"Direkte WhatsApp",address:"Adresse: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Finansiering",warranty:"Garanti",preDelivery:"Kontrollert før levering",transferIncluded:"Overføring inkludert",insurance:"Forsikring",search:"Søk",searchPlaceholder:"Merke, modell, år, drivstoff...",fuel:"Drivstoff",gear:"Gir",status:"Status",maxPrice:"Maks pris",pricePlaceholder:"F.eks. 20000",sort:"Sorter",featured:"Utvalgte",priceAsc:"Pris: lav",priceDesc:"Pris: høy",yearDesc:"År: nyest",kmAsc:"Km: minst",clear:"Tøm",availableVehicles:"Tilgjengelige biler",loadingCatalog:"Laster katalog...",viewStock:"Se lager",askStock:"Spør om lager",all:"Alle",forSale:"Til salgs",noResults:"Ingen biler med disse filtrene.",stockCount:"{visible} bil{plural} synlig av {total} til salgs",backCatalog:"Tilbake til katalog",notFoundTitle:"Bil ikke funnet",notFoundText:"Denne bilen er ikke lenger tilgjengelig eller lenken er feil.",year:"År",km:"Kilometer",power:"Effekt",engine:"Motor",descriptionFallback:"Spør om tilgjengelighet, finansiering og garanti.",sendWhatsapp:"Send via WhatsApp",copyLink:"Kopier lenke",viewShare:"Se / del",photos:"bilde",photosPlural:"bilder",whatsappMsg:"Hei AUTOSELECT, jeg er interessert i denne bilen: {title} - {price}. Jeg ønsker mer informasjon.",whatsappDetailMsg:"Hei AUTOSELECT, jeg er interessert i denne bilen: {title} - {price}. Lenke: {url}"},
+      sv:{call:"Ring",manageCatalog:"Hantera katalog",heroText:"<strong>KÖP OCH FÖRSÄLJNING AV BILAR.</strong> Utvalda och kontrollerade bilar redo för leverans. Vi tar din bil som delbetalning.",directWhatsapp:"Direkt WhatsApp",address:"Adress: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Finansiering",warranty:"Garanti",preDelivery:"Kontrollerad före leverans",transferIncluded:"Ägarbyte ingår",insurance:"Försäkring",search:"Sök",searchPlaceholder:"Märke, modell, år, bränsle...",fuel:"Bränsle",gear:"Växellåda",status:"Status",maxPrice:"Maxpris",pricePlaceholder:"T.ex. 20000",sort:"Sortera",featured:"Utvalda",priceAsc:"Pris: låg",priceDesc:"Pris: hög",yearDesc:"År: nyast",kmAsc:"Km: minst",clear:"Rensa",availableVehicles:"Tillgängliga bilar",loadingCatalog:"Laddar katalog...",viewStock:"Se lager",askStock:"Fråga om lager",all:"Alla",forSale:"Till salu",noResults:"Inga bilar med dessa filter.",stockCount:"{visible} bil{plural} synlig av {total} till salu",backCatalog:"Tillbaka till katalog",notFoundTitle:"Bil hittades inte",notFoundText:"Den här bilen är inte längre tillgänglig eller länken är fel.",year:"År",km:"Kilometer",power:"Effekt",engine:"Motor",descriptionFallback:"Fråga om tillgänglighet, finansiering och garanti.",sendWhatsapp:"Skicka via WhatsApp",copyLink:"Kopiera länk",viewShare:"Visa / dela",photos:"foto",photosPlural:"foton",whatsappMsg:"Hej AUTOSELECT, jag är intresserad av denna bil: {title} - {price}. Jag vill ha mer information.",whatsappDetailMsg:"Hej AUTOSELECT, jag är intresserad av denna bil: {title} - {price}. Länk: {url}"},
+      ru:{call:"Позвонить",manageCatalog:"Управлять каталогом",heroText:"<strong>ПОКУПКА И ПРОДАЖА АВТО.</strong> Отобранные и проверенные автомобили, готовые к передаче. Мы принимаем ваш автомобиль в зачет.",directWhatsapp:"WhatsApp напрямую",address:"Адрес: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Финансирование",warranty:"Гарантия",preDelivery:"Проверено перед выдачей",transferIncluded:"Переоформление включено",insurance:"Страхование",search:"Поиск",searchPlaceholder:"Марка, модель, год, топливо...",fuel:"Топливо",gear:"КПП",status:"Статус",maxPrice:"Макс. цена",pricePlaceholder:"Напр. 20000",sort:"Сортировать",featured:"Рекомендуемые",priceAsc:"Цена: ниже",priceDesc:"Цена: выше",yearDesc:"Год: новее",kmAsc:"Км: меньше",clear:"Очистить",availableVehicles:"Доступные автомобили",loadingCatalog:"Загрузка каталога...",viewStock:"Смотреть склад",askStock:"Спросить о наличии",all:"Все",forSale:"В продаже",noResults:"Нет автомобилей по этим фильтрам.",stockCount:"{visible} авто видно из {total} в продаже",backCatalog:"Вернуться в каталог",notFoundTitle:"Автомобиль не найден",notFoundText:"Этот автомобиль больше недоступен или ссылка неверна.",year:"Год",km:"Километры",power:"Мощность",engine:"Двигатель",descriptionFallback:"Уточните наличие, финансирование и гарантию.",sendWhatsapp:"Отправить в WhatsApp",copyLink:"Копировать ссылку",viewShare:"Открыть / поделиться",photos:"фото",photosPlural:"фото",whatsappMsg:"Здравствуйте, AUTOSELECT, меня интересует этот автомобиль: {title} - {price}. Хочу больше информации.",whatsappDetailMsg:"Здравствуйте, AUTOSELECT, меня интересует этот автомобиль: {title} - {price}. Ссылка: {url}"},
+      ar:{call:"اتصال",manageCatalog:"إدارة الكتالوج",heroText:"<strong>شراء وبيع السيارات.</strong> سيارات مختارة ومراجعة وجاهزة للتسليم. نقبل سيارتك كجزء من الدفع.",directWhatsapp:"واتساب مباشر",address:"العنوان: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"تمويل",warranty:"ضمان",preDelivery:"فحص قبل التسليم",transferIncluded:"نقل الملكية مشمول",insurance:"تأمين",search:"بحث",searchPlaceholder:"الماركة، الموديل، السنة، الوقود...",fuel:"الوقود",gear:"ناقل الحركة",status:"الحالة",maxPrice:"أقصى سعر",pricePlaceholder:"مثال 20000",sort:"ترتيب",featured:"مميز",priceAsc:"السعر: الأقل",priceDesc:"السعر: الأعلى",yearDesc:"السنة: الأحدث",kmAsc:"كم: الأقل",clear:"مسح",availableVehicles:"السيارات المتاحة",loadingCatalog:"جار تحميل الكتالوج...",viewStock:"عرض المخزون",askStock:"استشارة المخزون",all:"الكل",forSale:"للبيع",noResults:"لا توجد سيارات بهذه الفلاتر.",stockCount:"{visible} سيارة ظاهرة من {total} للبيع",backCatalog:"العودة إلى الكتالوج",notFoundTitle:"السيارة غير موجودة",notFoundText:"هذه السيارة لم تعد متاحة أو الرابط غير صحيح.",year:"السنة",km:"الكيلومترات",power:"القوة",engine:"المحرك",descriptionFallback:"اسأل عن التوفر والتمويل والضمان.",sendWhatsapp:"إرسال عبر واتساب",copyLink:"نسخ رابط السيارة",viewShare:"عرض / مشاركة",photos:"صورة",photosPlural:"صور",whatsappMsg:"مرحبا AUTOSELECT، أنا مهتم بهذه السيارة: {title} - {price}. أريد مزيدا من المعلومات.",whatsappDetailMsg:"مرحبا AUTOSELECT، أنا مهتم بهذه السيارة: {title} - {price}. الرابط: {url}"},
+      nl:{call:"Bellen",manageCatalog:"Catalogus beheren",heroText:"<strong>AUTO'S KOPEN EN VERKOPEN.</strong> Geselecteerde, gecontroleerde auto's klaar voor levering. Wij nemen uw auto in als deelbetaling.",directWhatsapp:"Direct WhatsApp",address:"Adres: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Financiering",warranty:"Garantie",preDelivery:"Pre-delivery gecontroleerd",transferIncluded:"Overschrijving inbegrepen",insurance:"Verzekering",search:"Zoeken",searchPlaceholder:"Merk, model, jaar, brandstof...",fuel:"Brandstof",gear:"Versnellingsbak",status:"Status",maxPrice:"Max prijs",pricePlaceholder:"Bijv. 20000",sort:"Sorteren",featured:"Uitgelicht",priceAsc:"Prijs: laag",priceDesc:"Prijs: hoog",yearDesc:"Jaar: nieuw",kmAsc:"Km: minder",clear:"Wissen",availableVehicles:"Beschikbare auto's",loadingCatalog:"Catalogus laden...",viewStock:"Bekijk voorraad",askStock:"Vraag voorraad",all:"Alles",forSale:"Te koop",noResults:"Geen auto's met deze filters.",stockCount:"{visible} auto{plural} zichtbaar van {total} te koop",backCatalog:"Terug naar catalogus",notFoundTitle:"Auto niet gevonden",notFoundText:"Deze auto is niet meer beschikbaar of de link is fout.",year:"Jaar",km:"Kilometers",power:"Vermogen",engine:"Motor",descriptionFallback:"Vraag naar beschikbaarheid, financiering en garantie.",sendWhatsapp:"Verstuur via WhatsApp",copyLink:"Kopieer link",viewShare:"Bekijk / deel",photos:"foto",photosPlural:"foto's",whatsappMsg:"Hallo AUTOSELECT, ik ben geïnteresseerd in deze auto: {title} - {price}. Ik wil graag meer informatie.",whatsappDetailMsg:"Hallo AUTOSELECT, ik ben geïnteresseerd in deze auto: {title} - {price}. Link: {url}"},
+      pl:{call:"Zadzwoń",manageCatalog:"Zarządzaj katalogiem",heroText:"<strong>KUPNO I SPRZEDAŻ SAMOCHODÓW.</strong> Wybrane, sprawdzone auta gotowe do odbioru. Przyjmujemy auto w rozliczeniu.",directWhatsapp:"WhatsApp bezpośrednio",address:"Adres: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Finansowanie",warranty:"Gwarancja",preDelivery:"Sprawdzone przed wydaniem",transferIncluded:"Przeniesienie w cenie",insurance:"Ubezpieczenie",search:"Szukaj",searchPlaceholder:"Marka, model, rok, paliwo...",fuel:"Paliwo",gear:"Skrzynia",status:"Status",maxPrice:"Cena max",pricePlaceholder:"Np. 20000",sort:"Sortuj",featured:"Polecane",priceAsc:"Cena: niższa",priceDesc:"Cena: wyższa",yearDesc:"Rok: nowszy",kmAsc:"Km: mniej",clear:"Wyczyść",availableVehicles:"Dostępne pojazdy",loadingCatalog:"Ładowanie katalogu...",viewStock:"Zobacz stan",askStock:"Zapytaj o stan",all:"Wszystkie",forSale:"Na sprzedaż",noResults:"Brak pojazdów dla tych filtrów.",stockCount:"{visible} pojazdów widocznych z {total} na sprzedaż",backCatalog:"Powrót do katalogu",notFoundTitle:"Pojazd nie znaleziony",notFoundText:"Ten samochód nie jest już dostępny lub link jest nieprawidłowy.",year:"Rok",km:"Kilometry",power:"Moc",engine:"Silnik",descriptionFallback:"Zapytaj o dostępność, finansowanie i gwarancję.",sendWhatsapp:"Wyślij przez WhatsApp",copyLink:"Kopiuj link",viewShare:"Zobacz / udostępnij",photos:"zdjęcie",photosPlural:"zdjęcia",whatsappMsg:"Dzień dobry AUTOSELECT, interesuje mnie ten samochód: {title} - {price}. Proszę o więcej informacji.",whatsappDetailMsg:"Dzień dobry AUTOSELECT, interesuje mnie ten samochód: {title} - {price}. Link: {url}"},
+      zh:{call:"电话",manageCatalog:"管理目录",heroText:"<strong>汽车买卖。</strong> 精选并检查过的车辆，可随时交付。我们接受您的车辆置换。",directWhatsapp:"WhatsApp 直聊",address:"地址：C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"融资",warranty:"保修",preDelivery:"交付前检查",transferIncluded:"过户已包含",insurance:"保险",search:"搜索",searchPlaceholder:"品牌、型号、年份、燃料...",fuel:"燃料",gear:"变速箱",status:"状态",maxPrice:"最高价格",pricePlaceholder:"例如 20000",sort:"排序",featured:"推荐",priceAsc:"价格：低",priceDesc:"价格：高",yearDesc:"年份：新",kmAsc:"公里：少",clear:"清除",availableVehicles:"可售车辆",loadingCatalog:"正在加载目录...",viewStock:"查看库存",askStock:"咨询库存",all:"全部",forSale:"出售中",noResults:"没有符合筛选条件的车辆。",stockCount:"显示 {visible} 辆，共 {total} 辆在售",backCatalog:"返回目录",notFoundTitle:"未找到车辆",notFoundText:"该车辆已不可用或链接错误。",year:"年份",km:"公里",power:"功率",engine:"发动机",descriptionFallback:"请咨询库存、融资和保修。",sendWhatsapp:"通过 WhatsApp 发送",copyLink:"复制车辆链接",viewShare:"查看 / 分享",photos:"张照片",photosPlural:"张照片",whatsappMsg:"您好 AUTOSELECT，我对这辆车感兴趣：{title} - {price}。我想了解更多信息。",whatsappDetailMsg:"您好 AUTOSELECT，我对这辆车感兴趣：{title} - {price}。链接：{url}"},
+      ro:{call:"Sună",manageCatalog:"Gestionează catalogul",heroText:"<strong>CUMPĂRARE ȘI VÂNZARE AUTO.</strong> Mașini selectate, verificate și pregătite pentru livrare. Acceptăm mașina ta ca parte de plată.",directWhatsapp:"WhatsApp direct",address:"Adresă: C. Isla Tabarca, 68, 03189 Dehesa de Campoamor, Alicante",financing:"Finanțare",warranty:"Garanție",preDelivery:"Verificată înainte de livrare",transferIncluded:"Transfer inclus",insurance:"Asigurare",search:"Caută",searchPlaceholder:"Marcă, model, an, combustibil...",fuel:"Combustibil",gear:"Cutie",status:"Stare",maxPrice:"Preț max.",pricePlaceholder:"Ex. 20000",sort:"Ordonează",featured:"Recomandate",priceAsc:"Preț: mic",priceDesc:"Preț: mare",yearDesc:"An: nou",kmAsc:"Km: puțini",clear:"Șterge",availableVehicles:"Vehicule disponibile",loadingCatalog:"Se încarcă catalogul...",viewStock:"Vezi stoc",askStock:"Întreabă stoc",all:"Toate",forSale:"De vânzare",noResults:"Nu există vehicule cu aceste filtre.",stockCount:"{visible} vehicul{plural} vizibil{plural} din {total} de vânzare",backCatalog:"Înapoi la catalog",notFoundTitle:"Vehicul negăsit",notFoundText:"Această mașină nu mai este disponibilă sau linkul este greșit.",year:"An",km:"Kilometri",power:"Putere",engine:"Motor",descriptionFallback:"Întreabă despre disponibilitate, finanțare și garanție.",sendWhatsapp:"Trimite prin WhatsApp",copyLink:"Copiază linkul",viewShare:"Vezi / distribuie",photos:"poză",photosPlural:"poze",whatsappMsg:"Bună AUTOSELECT, mă interesează această mașină: {title} - {price}. Doresc mai multe informații.",whatsappDetailMsg:"Bună AUTOSELECT, mă interesează această mașină: {title} - {price}. Link: {url}"}
+    };
+    i18n.be = { ...i18n.fr, ...i18n.be };
+    let currentLanguage = localStorage.getItem("autoselectLanguage") || "es";
+    if (!i18n[currentLanguage]) currentLanguage = "es";
+    function t(key, params = {}) {
+      const value = i18n[currentLanguage]?.[key] ?? i18n.es[key] ?? key;
+      return Object.entries(params).reduce((text, [name, replacement]) => text.replaceAll("{"+name+"}", replacement), value);
+    }
+    function applyTranslations() {
+      const cfg = languages[currentLanguage] || languages.es;
+      document.documentElement.lang = cfg[1];
+      document.documentElement.dir = cfg[2];
+      document.querySelectorAll("[data-i18n]").forEach((node) => { node.innerHTML = t(node.dataset.i18n); });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => { node.placeholder = t(node.dataset.i18nPlaceholder); });
+      document.querySelectorAll("[data-i18n-aria]").forEach((node) => { node.setAttribute("aria-label", t(node.dataset.i18nAria)); });
+      document.querySelectorAll("#sortFilter option[data-i18n]").forEach((node) => { node.textContent = t(node.dataset.i18n); });
+      const select = document.querySelector("#languageSelect");
+      if (select) select.value = currentLanguage;
+    }
+
     const fallbackImage = "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
     const heroSlides = [...document.querySelectorAll(".hero-slide")];
     let heroSlideIndex = 0;
@@ -2664,7 +2733,7 @@ transform:translateY(-2px) scale(1.03);
     }
 
     async function loadCarsFromSupabase() {
-      els.stockCount.innerHTML = "Cargando cat&aacute;logo...";
+      els.stockCount.innerHTML = t("loadingCatalog");
       const { data, error } = await db.from("cars").select("*").order("created_at", { ascending: false });
       if (error) {
         console.error(error);
@@ -2815,9 +2884,9 @@ transform:translateY(-2px) scale(1.03);
 
     function displayValue(value) {
       const labels = {
-        Automatico: "Autom&aacute;tico",
-        Electrico: "El&eacute;ctrico",
-        Hibrido: "H&iacute;brido"
+        Automatico: currentLanguage === "es" ? "Autom&aacute;tico" : "Automatic",
+        Electrico: currentLanguage === "es" ? "El&eacute;ctrico" : "Electric",
+        Hibrido: currentLanguage === "es" ? "H&iacute;brido" : "Hybrid"
       };
       return labels[value] || escapeHtml(value || "--");
     }
@@ -2865,9 +2934,9 @@ transform:translateY(-2px) scale(1.03);
       const fuels = [...new Set(cars.map((car) => car.fuel).filter(Boolean))];
       const gears = [...new Set(cars.map((car) => car.gear).filter(Boolean))];
       const statuses = [...new Set(cars.map((car) => car.status).filter(Boolean))];
-      els.fuelFilter.innerHTML = `<option value="">Todos</option>${fuels.map((item) => `<option value="${escapeHtml(item)}">${displayValue(item)}</option>`).join("")}`;
-      els.gearFilter.innerHTML = `<option value="">Todos</option>${gears.map((item) => `<option value="${escapeHtml(item)}">${displayValue(item)}</option>`).join("")}`;
-      els.statusFilter.innerHTML = `<option value="">En venta</option>${statuses.map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join("")}`;
+      els.fuelFilter.innerHTML = `<option value="">${t("all")}</option>${fuels.map((item) => `<option value="${escapeHtml(item)}">${displayValue(item)}</option>`).join("")}`;
+      els.gearFilter.innerHTML = `<option value="">${t("all")}</option>${gears.map((item) => `<option value="${escapeHtml(item)}">${displayValue(item)}</option>`).join("")}`;
+      els.statusFilter.innerHTML = `<option value="">${t("forSale")}</option>${statuses.map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join("")}`;
     }
 
 
@@ -2977,9 +3046,9 @@ transform:translateY(-2px) scale(1.03);
         els.carDetail.classList.remove("hidden");
         els.carDetail.innerHTML = `
           <div class="detail-info">
-            <a class="detail-back" href="${escapeHtml(catalogReturnUrl(car))}">Volver al cat&aacute;logo</a>
-            <h1>Vehiculo no encontrado</h1>
-            <div class="detail-description">Este coche ya no esta disponible o el enlace no es correcto.</div>
+            <a class="detail-back" href="${escapeHtml(catalogReturnUrl(car))}">${t("backCatalog")}</a>
+            <h1>${t("notFoundTitle")}</h1>
+            <div class="detail-description">${t("notFoundText")}</div>
           </div>
         `;
         return;
@@ -2987,11 +3056,11 @@ transform:translateY(-2px) scale(1.03);
       const images = carImages(car);
       const mainImage = images[0] || fallbackImage;
       const safeTitle = escapeHtml(car.title || "Vehiculo AUTOSELECT");
-      const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent(`Hola AUTOSELECT, me interesa este coche: ${car.title} - ${eur(car.price)}. Enlace: ${carPageUrl(car)}`)}`;
+      const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent(t("whatsappDetailMsg", { title: car.title, price: eur(car.price), url: carPageUrl(car) }))}`;
       document.title = `${car.title || "Vehiculo"} | AUTOSELECT`;
       els.carDetail.classList.remove("hidden");
       els.carDetail.innerHTML = `
-        <a class="detail-back" href="${escapeHtml(catalogReturnUrl(car))}">Volver al cat&aacute;logo</a>
+        <a class="detail-back" href="${escapeHtml(catalogReturnUrl(car))}">${t("backCatalog")}</a>
         <div class="detail-layout">
           <div class="detail-media">
             <img class="detail-main-image" id="detailMainImage" src="${escapeHtml(mainImage)}" alt="${safeTitle}" loading="eager" onerror="this.src='${fallbackImage}'" />
@@ -3008,18 +3077,18 @@ transform:translateY(-2px) scale(1.03);
             <h1>${safeTitle}</h1>
             <div class="detail-price">${eur(car.price)}</div>
             <div class="detail-specs">
-              <div class="detail-spec"><span>A&ntilde;o</span><strong>${car.year || "--"}</strong></div>
-              <div class="detail-spec"><span>Kil&oacute;metros</span><strong>${km(car.km)}</strong></div>
-              <div class="detail-spec"><span>Potencia</span><strong>${power(car.power)}</strong></div>
-              <div class="detail-spec"><span>Cilindrada</span><strong>${engine(car.engine)}</strong></div>
-              <div class="detail-spec"><span>Combustible</span><strong>${displayValue(car.fuel)}</strong></div>
-              <div class="detail-spec"><span>Cambio</span><strong>${displayValue(car.gear)}</strong></div>
+              <div class="detail-spec"><span>${t("year")}</span><strong>${car.year || "--"}</strong></div>
+              <div class="detail-spec"><span>${t("km")}</span><strong>${km(car.km)}</strong></div>
+              <div class="detail-spec"><span>${t("power")}</span><strong>${power(car.power)}</strong></div>
+              <div class="detail-spec"><span>${t("engine")}</span><strong>${engine(car.engine)}</strong></div>
+              <div class="detail-spec"><span>${t("fuel")}</span><strong>${displayValue(car.fuel)}</strong></div>
+              <div class="detail-spec"><span>${t("gear")}</span><strong>${displayValue(car.gear)}</strong></div>
             </div>
-            <div class="detail-description">${escapeHtml(car.description || "Consulta disponibilidad, financiaci\u00f3n y garant\u00eda.")}</div>
+            <div class="detail-description">${escapeHtml(car.description || "${t("descriptionFallback")}")}</div>
             <div class="detail-actions">
-              <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">Enviar por WhatsApp</a>
-              <a class="btn secondary" href="tel:+34656188878">Llamar</a>
-              <button class="btn secondary detail-share" type="button" data-copy-car-link="${escapeHtml(carPageUrl(car))}">Copiar enlace de este coche</button>
+              <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">${t("sendWhatsapp")}</a>
+              <a class="btn secondary" href="tel:+34656188878">${t("call")}</a>
+              <button class="btn secondary detail-share" type="button" data-copy-car-link="${escapeHtml(carPageUrl(car))}">${t("copyLink")}</button>
             </div>
           </div>
         </div>
@@ -3029,20 +3098,21 @@ transform:translateY(-2px) scale(1.03);
     function renderCars() {
       const list = filteredCars();
       const totalForSale = cars.filter((car) => car.status !== "Vendido").length;
-      els.stockCount.innerHTML = `${list.length} veh&iacute;culo${list.length === 1 ? "" : "s"} visible${list.length === 1 ? "" : "s"} de ${totalForSale} en venta`;
+      els.stockCount.innerHTML = t("stockCount", { visible: list.length, plural: list.length === 1 ? "" : "s", total: totalForSale });
       if (!list.length) {
-        els.cars.innerHTML = `<div class="empty">No hay veh&iacute;culos con estos filtros.</div>`;
+        els.cars.innerHTML = `<div class="empty">${t("noResults")}</div>`;
         return;
       }
       els.cars.innerHTML = list.map((car) => {
-        const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent(`Hola AUTOSELECT, me interesa este coche: ${car.title} - ${eur(car.price)}. Quiero mas informacion.`)}`;
+        const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent(t("whatsappMsg", { title: car.title, price: eur(car.price) }))}`;
         const images = carImages(car);
         const mainImage = images[0] || fallbackImage;
         const galleryId = `gallery-${car.id}`;
         const detailUrl = carPageUrl(car);
         const safeTitle = escapeHtml(car.title || "Vehiculo AUTOSELECT");
         const safeStatus = escapeHtml(car.status || "Disponible");
-        const photoText = `${images.length || 1} foto${(images.length || 1) === 1 ? "" : "s"}`;
+        const photoCount = images.length || 1;
+        const photoText = `${photoCount} ${photoCount === 1 ? t("photos") : t("photosPlural")}`;
         return `
           <article class="car" id="car-${escapeHtml(car.id)}">
             <a class="car-media car-open-link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener" title="Abrir ficha individual" data-car-id="${escapeHtml(car.id)}">
@@ -3063,18 +3133,18 @@ transform:translateY(-2px) scale(1.03);
                 <div class="price">${eur(car.price)}</div>
               </div>
               <div class="specs">
-                <div class="spec"><span>A&ntilde;o</span><strong>${car.year || "--"}</strong></div>
-                <div class="spec"><span>Kil&oacute;metros</span><strong>${km(car.km)}</strong></div>
-                <div class="spec"><span>Potencia</span><strong>${power(car.power)}</strong></div>
-                <div class="spec"><span>Cilindrada</span><strong>${engine(car.engine)}</strong></div>
-                <div class="spec"><span>Combustible</span><strong>${displayValue(car.fuel)}</strong></div>
-                <div class="spec"><span>Cambio</span><strong>${displayValue(car.gear)}</strong></div>
+                <div class="spec"><span>${t("year")}</span><strong>${car.year || "--"}</strong></div>
+                <div class="spec"><span>${t("km")}</span><strong>${km(car.km)}</strong></div>
+                <div class="spec"><span>${t("power")}</span><strong>${power(car.power)}</strong></div>
+                <div class="spec"><span>${t("engine")}</span><strong>${engine(car.engine)}</strong></div>
+                <div class="spec"><span>${t("fuel")}</span><strong>${displayValue(car.fuel)}</strong></div>
+                <div class="spec"><span>${t("gear")}</span><strong>${displayValue(car.gear)}</strong></div>
               </div>
-              <div class="description">${escapeHtml(car.description || "Consulta disponibilidad, financiaci\u00f3n y garant\u00eda.")}</div>
+              <div class="description">${escapeHtml(car.description || "${t("descriptionFallback")}")}</div>
               <div class="car-actions">
                 <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">WhatsApp</a>
-                <a class="btn secondary" href="tel:+34656188878">Llamar</a>
-                <a class="btn secondary car-share-link car-open-link" target="_blank" rel="noopener" href="${escapeHtml(detailUrl)}" data-car-id="${escapeHtml(car.id)}">Ver ficha / compartir</a>
+                <a class="btn secondary" href="tel:+34656188878">${t("call")}</a>
+                <a class="btn secondary car-share-link car-open-link" target="_blank" rel="noopener" href="${escapeHtml(detailUrl)}" data-car-id="${escapeHtml(car.id)}">${t("viewShare")}</a>
               </div>
             </div>
           </article>
@@ -3123,6 +3193,7 @@ transform:translateY(-2px) scale(1.03);
       els.fuelFilter.value = [...els.fuelFilter.options].some((option) => option.value === oldFuel) ? oldFuel : "";
       els.gearFilter.value = [...els.gearFilter.options].some((option) => option.value === oldGear) ? oldGear : "";
       els.statusFilter.value = [...els.statusFilter.options].some((option) => option.value === oldStatus) ? oldStatus : "";
+      applyTranslations();
       renderCars();
       renderCarDetail();
       restoreCatalogPosition();
@@ -3447,6 +3518,14 @@ transform:translateY(-2px) scale(1.03);
       const mainImage = opener.querySelector("img")?.src || "";
       if (carId && typeof openGallery === "function") openGallery(carId, mainImage);
     });
+
+
+    document.querySelector("#languageSelect")?.addEventListener("change", (event) => {
+      currentLanguage = event.target.value || "es";
+      localStorage.setItem("autoselectLanguage", currentLanguage);
+      renderAll();
+    });
+    applyTranslations();
 
     initAdminSession();
     loadCarsFromSupabase();
@@ -3892,6 +3971,7 @@ document.addEventListener("keydown", function(e){
 <script src="/widget/autoselect-chat.js" data-brand="AutoSelect"></script>
 </body>
 </html>
+
 
 
 
