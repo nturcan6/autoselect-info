@@ -2257,7 +2257,7 @@ transform:translateY(-2px) scale(1.03);
 <body>
   <nav class="topbar">
     <div class="shell">
-      <a class="brand" href="#inicio" aria-label="Volver al inicio"><span>AUTO</span> SELECT</a>
+      <a class="brand" href="/" aria-label="Volver al inicio"><span>AUTO</span> SELECT</a>
       <div class="brand-social" aria-label="Redes sociales y plataformas AutoSelect">
         <a class="social-link facebook" target="_blank" rel="noopener" href="https://www.facebook.com/autoselecttorrevieja" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></a>
         <a class="social-link instagram" target="_blank" rel="noopener" href="https://www.instagram.com/autoselect_vehiculos/" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M17.5 6.8h.01"/></svg></a>
@@ -2922,8 +2922,41 @@ transform:translateY(-2px) scale(1.03);
     function carPageUrl(car) {
       const url = new URL(window.location.href);
       url.searchParams.set("car", car.id);
+      url.searchParams.delete("restoreY");
+      url.searchParams.delete("returnY");
+      url.searchParams.delete("returnCar");
       url.hash = "";
       return url.toString();
+    }
+
+    function catalogReturnUrl(car) {
+      const url = new URL(window.location.href);
+      const returnY = url.searchParams.get("returnY");
+      const returnCar = url.searchParams.get("returnCar") || car?.id || "";
+      url.searchParams.delete("car");
+      url.searchParams.delete("returnY");
+      url.searchParams.delete("returnCar");
+      if (returnY) url.searchParams.set("restoreY", returnY);
+      url.hash = returnCar ? `car-${returnCar}` : "cars";
+      return `${url.pathname}${url.search}${url.hash}`;
+    }
+
+    function restoreCatalogPosition() {
+      if (activeCarId()) return;
+      const params = new URLSearchParams(window.location.search);
+      const restoreY = Number(params.get("restoreY") || 0);
+      const hashTarget = window.location.hash ? document.querySelector(window.location.hash) : null;
+      if (!restoreY && !hashTarget) return;
+      requestAnimationFrame(() => {
+        if (restoreY) {
+          window.scrollTo({ top: restoreY, behavior: "auto" });
+        } else if (hashTarget) {
+          hashTarget.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+        const clean = new URL(window.location.href);
+        clean.searchParams.delete("restoreY");
+        history.replaceState(null, "", `${clean.pathname}${clean.search}${clean.hash}`);
+      });
     }
 
     function findCarById(carId) {
@@ -2944,7 +2977,7 @@ transform:translateY(-2px) scale(1.03);
         els.carDetail.classList.remove("hidden");
         els.carDetail.innerHTML = `
           <div class="detail-info">
-            <a class="detail-back" href="${escapeHtml(location.pathname)}">Volver al catalogo</a>
+            <a class="detail-back" href="${escapeHtml(catalogReturnUrl(car))}">Volver al cat&aacute;logo</a>
             <h1>Vehiculo no encontrado</h1>
             <div class="detail-description">Este coche ya no esta disponible o el enlace no es correcto.</div>
           </div>
@@ -2958,7 +2991,7 @@ transform:translateY(-2px) scale(1.03);
       document.title = `${car.title || "Vehiculo"} | AUTOSELECT`;
       els.carDetail.classList.remove("hidden");
       els.carDetail.innerHTML = `
-        <a class="detail-back" href="${escapeHtml(location.pathname)}">Volver al catalogo</a>
+        <a class="detail-back" href="${escapeHtml(catalogReturnUrl(car))}">Volver al cat&aacute;logo</a>
         <div class="detail-layout">
           <div class="detail-media">
             <img class="detail-main-image" id="detailMainImage" src="${escapeHtml(mainImage)}" alt="${safeTitle}" loading="eager" onerror="this.src='${fallbackImage}'" />
@@ -3011,8 +3044,8 @@ transform:translateY(-2px) scale(1.03);
         const safeStatus = escapeHtml(car.status || "Disponible");
         const photoText = `${images.length || 1} foto${(images.length || 1) === 1 ? "" : "s"}`;
         return `
-          <article class="car">
-            <a class="car-media car-open-link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener" title="Abrir ficha individual">
+          <article class="car" id="car-${escapeHtml(car.id)}">
+            <a class="car-media car-open-link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener" title="Abrir ficha individual" data-car-id="${escapeHtml(car.id)}">
               <img id="${escapeHtml(galleryId)}" src="${escapeHtml(mainImage)}" alt="${safeTitle}" loading="lazy" onerror="this.src='${fallbackImage}'" />
               <span class="badge ${badgeClass(car.status)}">${safeStatus}</span>
               <span class="photo-count">${photoText}</span>
@@ -3026,7 +3059,7 @@ transform:translateY(-2px) scale(1.03);
                 `).join("")}
               </div>
               <div class="car-title">
-                <a class="car-open-link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener" title="Abrir ficha individual"><strong class="car-title-text">${safeTitle}</strong></a>
+                <a class="car-open-link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener" title="Abrir ficha individual" data-car-id="${escapeHtml(car.id)}"><strong class="car-title-text">${safeTitle}</strong></a>
                 <div class="price">${eur(car.price)}</div>
               </div>
               <div class="specs">
@@ -3041,7 +3074,7 @@ transform:translateY(-2px) scale(1.03);
               <div class="car-actions">
                 <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">WhatsApp</a>
                 <a class="btn secondary" href="tel:+34656188878">Llamar</a>
-                <a class="btn secondary car-share-link" target="_blank" rel="noopener" href="${escapeHtml(detailUrl)}">Ver ficha / compartir</a>
+                <a class="btn secondary car-share-link car-open-link" target="_blank" rel="noopener" href="${escapeHtml(detailUrl)}" data-car-id="${escapeHtml(car.id)}">Ver ficha / compartir</a>
               </div>
             </div>
           </article>
@@ -3092,6 +3125,7 @@ transform:translateY(-2px) scale(1.03);
       els.statusFilter.value = [...els.statusFilter.options].some((option) => option.value === oldStatus) ? oldStatus : "";
       renderCars();
       renderCarDetail();
+      restoreCatalogPosition();
       renderAdminSummary();
       renderAdminList();
     }
@@ -3197,6 +3231,15 @@ transform:translateY(-2px) scale(1.03);
     });
 
     els.cars.addEventListener("click", (event) => {
+      const carLink = event.target.closest(".car-open-link");
+      if (carLink) {
+        const url = new URL(carLink.href, window.location.href);
+        url.searchParams.set("returnY", String(Math.max(0, Math.round(window.scrollY))));
+        if (carLink.dataset.carId) url.searchParams.set("returnCar", carLink.dataset.carId);
+        carLink.href = url.toString();
+        return;
+      }
+
       const thumb = event.target.closest(".thumb");
       if (thumb) {
         const main = document.getElementById(thumb.dataset.gallery);
@@ -3849,6 +3892,8 @@ document.addEventListener("keydown", function(e){
 <script src="/widget/autoselect-chat.js" data-brand="AutoSelect"></script>
 </body>
 </html>
+
+
 
 
 
