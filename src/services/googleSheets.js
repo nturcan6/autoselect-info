@@ -44,6 +44,35 @@ export async function appendLead(lead) {
   }
 }
 
+export async function readRecentLeads(limit = 20) {
+  if (!isConfigured()) return [];
+
+  const accessToken = await getAccessToken();
+  const safeLimit = Math.max(1, Math.min(Number(limit) || 20, 100));
+  const range = encodeURIComponent(`${config.googleSheets.tab}!A:J`);
+  const response = await fetch(
+    `https://sheets.googleapis.com/v4/spreadsheets/${config.googleSheets.sheetId}/values/${range}?majorDimension=ROWS`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    }
+  );
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`Google Sheets read failed: ${response.status} ${body}`);
+  }
+
+  const payload = await response.json();
+  const rows = payload.values || [];
+  const bodyRows = rows.slice(1).slice(-safeLimit);
+
+  return bodyRows.map((row) =>
+    Object.fromEntries(headers.map((header, index) => [header, row[index] || '']))
+  );
+}
+
 async function getAccessToken() {
   if (cachedAccessToken && cachedAccessToken.expiresAt > Date.now() + 60_000) {
     return cachedAccessToken.token;

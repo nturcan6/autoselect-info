@@ -6,14 +6,19 @@
   node_bundler = "esbuild"
 
 [[redirects]]
-  from = "/health"
-  to = "/.netlify/functions/health"
-  status = 200
+from = "/health"
+to = "/.netlify/functions/health"
+status = 200
 
 [[redirects]]
-  from = "/web-chat"
-  to = "/.netlify/functions/web-chat"
-  status = 200
+from = "/debug-leads"
+to = "/.netlify/functions/debug-leads"
+status = 200
+
+[[redirects]]
+from = "/web-chat"
+to = "/.netlify/functions/web-chat"
+status = 200
 
 [[redirects]]
   from = "/webhook/meta"
