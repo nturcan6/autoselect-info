@@ -1,4 +1,4 @@
-import { buildBotReply } from '../../src/services/bot.js';
+﻿import { buildBotReply } from '../../src/services/bot.js';
 import { appendLead } from '../../src/services/googleSheets.js';
 import { classifyLead } from '../../src/services/leads.js';
 import { notifyOwner } from '../../src/services/ownerNotifications.js';
@@ -6,6 +6,7 @@ import {
   extractFacebookEvents,
   extractInstagramEvents,
   extractWhatsAppEvents,
+  extractWhatsAppStatusEvents,
   sendFacebookText,
   sendInstagramText,
   sendWhatsAppText,
@@ -35,13 +36,40 @@ async function processMetaWebhook(body) {
     ...extractInstagramEvents(body),
     ...extractFacebookEvents(body)
   ];
+  const statusEvents = extractWhatsAppStatusEvents(body);
 
   const result = {
     events: events.length,
+    statuses: statusEvents.length,
     processed: 0,
+    statusProcessed: 0,
     ownerNotifications: [],
     errors: []
   };
+
+  for (const statusEvent of statusEvents) {
+    try {
+      await appendLead({
+        createdAt: statusEvent.timestamp,
+        channel: statusEvent.channel,
+        contactId: statusEvent.from,
+        intent: statusEvent.status,
+        message: statusEvent.text,
+        status: statusEvent.status,
+        vehicle: '',
+        budget: '',
+        nextAction: 'Revisar estado de entrega de WhatsApp en Meta.',
+        sourceUrl: statusEvent.id || ''
+      });
+      result.statusProcessed += 1;
+    } catch (error) {
+      result.errors.push({
+        message: error.message,
+        channel: statusEvent.channel,
+        from: statusEvent.from
+      });
+    }
+  }
 
   for (const event of events) {
     try {
@@ -109,3 +137,4 @@ function json(statusCode, body) {
     body: JSON.stringify(body)
   };
 }
+

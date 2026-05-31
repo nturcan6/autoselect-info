@@ -1,4 +1,4 @@
-import { config } from '../config.js';
+﻿import { config } from '../config.js';
 
 const graphBase = `https://graph.facebook.com/${config.graphVersion}`;
 const instagramGraphBase = `https://graph.instagram.com/${config.graphVersion}`;
@@ -41,6 +41,35 @@ export function extractWhatsAppEvents(payload) {
   return events;
 }
 
+
+export function extractWhatsAppStatusEvents(payload) {
+  const entries = payload.entry || [];
+  const events = [];
+
+  for (const entry of entries) {
+    for (const change of entry.changes || []) {
+      const value = change.value || {};
+      for (const status of value.statuses || []) {
+        const errorText = (status.errors || [])
+          .map((error) => `${error.code || ''} ${error.title || ''} ${error.message || ''}`.trim())
+          .filter(Boolean)
+          .join(' | ');
+
+        events.push({
+          id: status.id,
+          channel: 'whatsapp_status',
+          from: status.recipient_id || '',
+          text: `WhatsApp status: ${status.status || 'unknown'}${errorText ? ` - ${errorText}` : ''}`,
+          timestamp: unixToIso(status.timestamp),
+          raw: status,
+          status: status.status || 'unknown'
+        });
+      }
+    }
+  }
+
+  return events;
+}
 export function extractInstagramEvents(payload) {
   if (payload.object !== 'instagram') return [];
   return extractMessagingEvents(payload, 'instagram');
@@ -196,3 +225,4 @@ function unixToIso(timestamp) {
   if (!Number.isFinite(numericTimestamp)) return new Date().toISOString();
   return new Date(numericTimestamp * 1000).toISOString();
 }
+
