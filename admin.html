@@ -1124,6 +1124,24 @@ padding:0 14px;
 background:#111;
 }
 
+.insurance-link.insurance-whatsapp{
+background:#25d366;
+color:#111;
+}
+
+.insurance-link.insurance-whatsapp:hover{
+background:#1fb85a;
+}
+
+.insurance-link.insurance-site:disabled{
+background:#eeeeee;
+color:#555;
+border:0;
+font-family:inherit;
+font-size:inherit;
+cursor:not-allowed;
+}
+
 .insurance-close{
 position:absolute;
 top:10px;
@@ -2314,7 +2332,7 @@ transform:translateY(-2px) scale(1.03);
         els.photoStatus.textContent = "Coche guardado correctamente.";
       } catch (error) {
         console.error(error);
-        alert("No se pudo guardar en Supabase. Revisa conexiÃ³n, tabla cars, bucket car-images y polÃ­ticas RLS.");
+        alert("No se pudo guardar en Supabase. Revisa conexión, tabla cars, bucket car-images y políticas RLS.");
       }
     });
 
@@ -2522,12 +2540,12 @@ transform:translateY(-2px) scale(1.03);
 <div class="warranty-modal" id="warrantyModal">
   <div class="warranty-box">
     <button class="warranty-close" id="closeWarrantyModal" type="button">&times;</button>
-    <h3>GarantÃ­a / Warranty</h3>
+    <h3>Garantía / Warranty</h3>
     <p>
-      GarantÃ­a de 1 aÃ±o con una empresa especializada, que incluye el motor y la caja de cambios.
-      El cliente debe solicitar mÃ¡s especificaciones a la hora de realizar la compra del vehÃ­culo.
-      Hay varios tipos de garantÃ­a y coberturas que podemos ofrecer.
-      TambiÃ©n se puede ampliar por cuenta propia.
+      Garantía de 1 año con una empresa especializada, que incluye el motor y la caja de cambios.
+      El cliente debe solicitar más especificaciones a la hora de realizar la compra del vehículo.
+      Hay varios tipos de garantía y coberturas que podemos ofrecer.
+      También se puede ampliar por cuenta propia.
     </p>
   </div>
 </div>
@@ -2561,12 +2579,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <h3>Blum Seguros</h3>
 
-    <p>Seguros personalizados para vehÃ­culos, hogar, salud y empresas.</p>
+    <p>Seguros personalizados para vehículos, hogar, salud y empresas.</p>
 
     <div class="insurance-links">
-      <a class="insurance-link" target="_blank" rel="noopener" href="https://BlumSeguros.com">PÃ¡gina web</a>
+      <a class="insurance-link insurance-whatsapp" target="_blank" rel="noopener" href="https://wa.me/34653480808">WhatsApp +34 653 48 08 08</a>
       <a class="insurance-link secondary" target="_blank" rel="noopener" href="https://www.facebook.com/elena.gherasimciuc">Facebook</a>
       <a class="insurance-link" target="_blank" rel="noopener" href="https://instagram.com/Elena.Gheras">Instagram @Elena.Gheras</a>
+      <button class="insurance-link insurance-site" type="button" disabled title="Temporalmente no disponible">P&aacute;gina web</button>
     </div>
   </div>
 </div>
