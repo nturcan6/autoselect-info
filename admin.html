@@ -374,22 +374,24 @@
 
     .cars {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+      gap: 24px 22px;
     }
 
     .car {
       background: var(--panel);
-      border: 2px solid #111;
+      border: 1px solid #8d939b;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      display: grid;
+      box-shadow: 0 4px 12px rgba(20, 23, 19, 0.12);
+      display: flex;
+      flex-direction: column;
     }
 
     .car-media {
       position: relative;
-      aspect-ratio: 16 / 10;
+      flex: none;
+      aspect-ratio: 16 / 9;
       background: #d9ddd4;
       overflow: hidden;
     }
@@ -431,8 +433,11 @@
 
     .thumbs {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 6px;
+      grid-auto-flow: column;
+      grid-auto-columns: calc((100% - 20px) / 5);
+      gap: 5px;
+      overflow-x: auto;
+      scrollbar-width: thin;
     }
 
     .thumb {
@@ -461,69 +466,89 @@
     }
 
     .car-body {
-      padding: 13px;
-      display: grid;
-      gap: 10px;
+      padding: 10px;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .car-title {
       display: flex;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
       align-items: start;
     }
 
     .car-title strong {
-      font-size: 19px;
-      line-height: 1.1;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-size: 17px;
+      line-height: 1.15;
     }
 
     .price {
       color: var(--brand-2);
-      font-size: 21px;
+      font-size: 19px;
       font-weight: 950;
       white-space: nowrap;
     }
 
     .specs {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, max(104px, (100% - 10px) / 3)), 1fr));
+      gap: 5px;
     }
 
     .spec {
       border: 1px solid var(--line);
       border-radius: 6px;
-      padding: 8px;
+      padding: 5px 6px;
       background: #fbfcfa;
-      min-height: 52px;
     }
 
     .spec span {
       display: block;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 10px;
       text-transform: uppercase;
       font-weight: 850;
     }
 
     .spec strong {
       display: block;
-      margin-top: 3px;
-      overflow-wrap: anywhere;
+      margin-top: 2px;
+      font-size: 13px;
     }
 
     .description {
       color: var(--muted);
-      line-height: 1.42;
+      font-size: 13px;
+      line-height: 1.35;
       font-weight: 650;
-      min-height: 42px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      overflow-wrap: anywhere;
     }
 
     .car-actions {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .car-actions .btn {
+      min-width: 0;
+      min-height: 42px;
+      padding: 4px;
+      font-size: 12px;
+      line-height: 1.15;
+      text-align: center;
+      overflow-wrap: anywhere;
+      text-transform: none;
     }
 
     .admin {
@@ -915,7 +940,7 @@
       .admin-summary { grid-template-columns: 1fr; }
       .stock-actions { width: 100%; justify-content: stretch; }
       .stock-actions .btn { flex: 1; }
-      .car-actions { grid-template-columns: 1fr; }
+      .cars { gap: 20px; }
       .hero { min-height: 62vh; }
       .hero-content { padding: 42px 0; }
       .hero p { font-size: 15px; }
@@ -2116,6 +2141,7 @@ transform:translateY(-2px) scale(1.03);
         const safeTitle = escapeHtml(car.title || "Vehiculo AUTOSELECT");
         const safeStatus = escapeHtml(car.status || "Disponible");
         const photoText = `${images.length || 1} foto${(images.length || 1) === 1 ? "" : "s"}`;
+        const description = String(car.description ?? "").trim();
         return `
           <article class="car">
             <div class="car-media" data-open-gallery="${escapeHtml(car.id)}" title="Abrir galer&iacute;a HD">
@@ -2143,7 +2169,7 @@ transform:translateY(-2px) scale(1.03);
                 <div class="spec"><span>Combustible</span><strong>${displayValue(car.fuel)}</strong></div>
                 <div class="spec"><span>Cambio</span><strong>${displayValue(car.gear)}</strong></div>
               </div>
-              <div class="description">${escapeHtml(car.description || "Consulta disponibilidad, financiacion y garantia.")}</div>
+              ${description ? `<div class="description">${escapeHtml(description)}</div>` : ""}
               <div class="car-actions">
                 <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">WhatsApp</a>
                 <a class="btn secondary" href="tel:+34656188878">Llamar</a>
