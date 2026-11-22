@@ -704,16 +704,19 @@
 
     .detail-info h1 {
       margin: 0;
-      font-size: clamp(30px, 4vw, 54px);
-      line-height: .95;
+      font-size: 42px;
+      line-height: 1.08;
+      text-align: center;
+      text-wrap: balance;
       text-transform: uppercase;
     }
 
     .detail-price {
       color: var(--brand-2);
-      font-size: clamp(28px, 3.4vw, 44px);
+      font-size: 44px;
       font-weight: 1000;
       line-height: 1;
+      text-align: center;
     }
 
     .detail-specs {
@@ -821,13 +824,7 @@
       }
 
       .detail-info h1 {
-        font-size: clamp(24px, 9vw, 36px);
-        line-height: 1.05;
         overflow-wrap: anywhere;
-      }
-
-      .detail-price {
-        font-size: clamp(24px, 8vw, 34px);
       }
 
       .detail-specs {
@@ -2272,15 +2269,14 @@ transform:translateY(-2px) scale(1.03);
         display: block;
         width: 100%;
         max-width: 100%;
-        font-size: clamp(28px, 8vw, 38px);
-        line-height: 1.05;
+        font-size: 33px;
         white-space: normal;
         overflow-wrap: anywhere;
         word-break: break-word;
       }
 
       .detail-price {
-        font-size: clamp(28px, 8vw, 36px);
+        font-size: 36px;
       }
 
       .detail-specs {
@@ -2294,7 +2290,11 @@ transform:translateY(-2px) scale(1.03);
 
     @media (max-width: 430px) {
       .detail-info h1 {
-        font-size: clamp(26px, 9vw, 34px);
+        font-size: 28px;
+      }
+
+      .detail-price {
+        font-size: 32px;
       }
 
       .detail-specs {
