@@ -2577,7 +2577,7 @@ document.addEventListener("click", function(event) {
     <div class="finance-inner">
       <div class="finance-topline">
         <div>
-          <label class="finance-label" for="financeYear">AÃ±o de primera matriculaciÃ³n <span style="color:#d3332d">*</span></label>
+          <label class="finance-label" for="financeYear">Año de primera matriculación <span style="color:#d3332d">*</span></label>
           <input class="finance-input" id="financeYear" type="number" value="2018" min="1980" max="2035">
         </div>
 
@@ -2585,16 +2585,16 @@ document.addEventListener("click", function(event) {
       </div>
 
       <div class="finance-row">
-        <label class="finance-label">Valor a financiar (â‚¬)</label>
+        <label class="finance-label">Valor a financiar (€)</label>
         <div class="finance-amount-row">
-          <button class="finance-step" type="button" id="financeMinus">âˆ’</button>
+          <button class="finance-step" type="button" id="financeMinus">−</button>
           <div class="finance-amount-display" id="financeAmountText">8000</div>
           <button class="finance-step" type="button" id="financePlus">+</button>
         </div>
       </div>
 
       <div class="finance-row">
-        <label class="finance-label">NÃºmero de meses</label>
+        <label class="finance-label">Número de meses</label>
         <div class="finance-month-scale" id="financeMonths">
           <div class="finance-month-option" data-months="36">36</div>
           <div class="finance-month-option" data-months="48">48</div>
@@ -2612,30 +2612,30 @@ document.addEventListener("click", function(event) {
       </div>
 
       <div class="finance-result">
-        <div class="finance-result-label">Tu cuota mensual de financiaciÃ³n:</div>
-        <div class="finance-payment" id="financePayment">267,13 â‚¬</div>
+        <div class="finance-result-label">Tu cuota mensual de financiación:</div>
+        <div class="finance-payment" id="financePayment">267,13 €</div>
       </div>
 
       <label class="finance-check">
         <input type="checkbox" id="financeServices">
-        <span>Cliente tiene interÃ©s en contratar servicios complementarios (por ejemplo, seguro de protecciÃ³n de Pagos).</span>
+        <span>Cliente tiene interés en contratar servicios complementarios (por ejemplo, seguro de protección de Pagos).</span>
       </label>
 
       <div class="finance-tin-title">Opciones de TIN</div>
       <div class="finance-tin-list">
-        <label><input type="radio" name="financeTin" value="9.99" checked>9.99 % (ComisiÃ³n del colaborador de 0,50 %)</label>
-        <label><input type="radio" name="financeTin" value="8.99">8.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
-        <label><input type="radio" name="financeTin" value="7.99">7.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
-        <label><input type="radio" name="financeTin" value="6.99">6.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
-        <label><input type="radio" name="financeTin" value="5.99">5.99 % (ComisiÃ³n del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="9.99" checked>9.99 % (Comisión del colaborador de 0,50 %)</label>
+        <label><input type="radio" name="financeTin" value="8.99">8.99 % (Comisión del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="7.99">7.99 % (Comisión del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="6.99">6.99 % (Comisión del colaborador de 0,00 %)</label>
+        <label><input type="radio" name="financeTin" value="5.99">5.99 % (Comisión del colaborador de 0,00 %)</label>
       </div>
 
       <div class="finance-legal">
-        Los cÃ¡lculos ofrecidos tienen carÃ¡cter orientativo y no vinculante, pudiendo sufrir alteraciones, ya que la operaciÃ³n estÃ¡ sujeta a evaluaciÃ³n y aprobaciÃ³n posterior.<br>
-        Tipo de InterÃ©s Nominal anual aplicable segÃºn opciÃ³n seleccionada.<br>
-        Tasa Anual Equivalente (TAE) aplicable segÃºn condiciones finales.<br>
-        ComisiÃ³n de apertura financiada estimada 3,50 %.<br>
-        ComisiÃ³n de cancelaciÃ³n 1,00 %.
+        Los cálculos ofrecidos tienen carácter orientativo y no vinculante, pudiendo sufrir alteraciones, ya que la operación está sujeta a evaluación y aprobación posterior.<br>
+        Tipo de Interés Nominal anual aplicable según opción seleccionada.<br>
+        Tasa Anual Equivalente (TAE) aplicable según condiciones finales.<br>
+        Comisión de apertura financiada estimada 3,50 %.<br>
+        Comisión de cancelación 1,00 %.
       </div>
     </div>
   </div>
@@ -2649,7 +2649,7 @@ document.addEventListener("click", function(event) {
   let financeMonths = 36;
 
   function formatEuro(value){
-    return value.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " â‚¬";
+    return value.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
   }
 
   function getTin(){
