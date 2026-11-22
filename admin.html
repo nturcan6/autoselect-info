@@ -415,6 +415,7 @@
       font-weight: 900;
     }
 
+    .badge.available { background: #c52222; }
     .badge.reserved { background: rgba(179, 38, 30, 0.94); }
     .badge.new { background: rgba(11, 122, 69, 0.94); }
     .badge.sold { background: rgba(85, 91, 99, 0.94); }
@@ -549,6 +550,15 @@
       text-align: center;
       overflow-wrap: anywhere;
       text-transform: none;
+    }
+
+    .car-actions .btn-whatsapp {
+      background: #25d366;
+      color: #111;
+    }
+
+    .car-actions .btn-whatsapp:hover {
+      background: #1fb85a;
     }
 
     .admin {
@@ -2034,6 +2044,7 @@ transform:translateY(-2px) scale(1.03);
     }
 
     function badgeClass(status) {
+      if (!status || status === "Disponible") return "available";
       if (status === "Reservado") return "reserved";
       if (status === "Nuevo stock") return "new";
       if (status === "Vendido") return "sold";
@@ -2171,7 +2182,7 @@ transform:translateY(-2px) scale(1.03);
               </div>
               ${description ? `<div class="description">${escapeHtml(description)}</div>` : ""}
               <div class="car-actions">
-                <a class="btn" target="_blank" rel="noopener" href="${whatsapp}">WhatsApp</a>
+                <a class="btn btn-whatsapp" target="_blank" rel="noopener" href="${whatsapp}">WhatsApp</a>
                 <a class="btn secondary" href="tel:+34656188878">Llamar</a>
               </div>
             </div>
